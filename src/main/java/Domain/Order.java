@@ -12,6 +12,14 @@ public class Order {
         this.pizzas = pizzas;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", pizzas=" + pizzas +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

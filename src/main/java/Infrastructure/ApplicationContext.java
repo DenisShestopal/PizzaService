@@ -35,7 +35,7 @@ public class ApplicationContext implements Context {
             Class<?>[] parameterTypes = constructor.getParameterTypes();
             Object[] params = new Object[constructor.getParameterCount()];
             for (int i = 0; i < constructor.getParameterCount(); i++) {
-                String beanName2 = convertTypeToBeanName(parameterTypes[i].toString()); //convertTypeToBeanName -> convert first letter to lowercase
+                String beanName2 = convertTypeToBeanName(parameterTypes[i].getSimpleName()); //convertTypeToBeanName -> convert first letter to lowercase
                 params[i] = getBean(beanName2);
             }
 

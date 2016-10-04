@@ -14,6 +14,16 @@ public class Pizza {
         this.pizzaType = pizzaType;
     }
 
+    @Override
+    public String toString() {
+        return "\nPizza{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", pizzaType=" + pizzaType +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
