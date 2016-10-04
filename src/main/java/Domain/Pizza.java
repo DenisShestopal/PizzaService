@@ -1,11 +1,13 @@
-public class Pizza {
+package Repository;
+
+public class InMemoryPizzaRepository {
 
     private Long id;
     private String name;
     private Double price;
     private PizzaType pizzaType;
 
-    public Pizza(Long id, String name, Double price, PizzaType pizzaType) {
+    public InMemoryPizzaRepository(Long id, String name, Double price, PizzaType pizzaType) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -42,5 +44,9 @@ public class Pizza {
 
     public void setPizzaType(PizzaType pizzaType) {
         this.pizzaType = pizzaType;
+    }
+
+    public static enum PizzaType {
+        Vegetarian, Sea, Meat
     }
 }
