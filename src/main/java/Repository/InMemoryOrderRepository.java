@@ -1,27 +1,21 @@
+package Repository;
+
+import Domain.Order;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
-    private Long id;
-    private List<Pizza> pizzas;
+public class InMemoryOrderRepository implements OrderRepository{
 
-    public Order(Long id, List<Pizza> pizzas) {
-        this.id = id;
-        this.pizzas = pizzas;
+    private List<Order> listOrders = new ArrayList<>();
+
+    public List<Order> getListOrders() {
+        return listOrders;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public Order saveOrder(Order order){
+        listOrders.add(order);
+        return order;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Pizza> getPizzas() {
-        return pizzas;
-    }
-
-    public void setPizzas(List<Pizza> pizzas) {
-        this.pizzas = pizzas;
-    }
 }

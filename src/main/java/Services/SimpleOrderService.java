@@ -1,45 +1,44 @@
 package Services;
 
 import Domain.Customer;
+import Domain.Order;
 import Repository.InMemoryOrderRepository;
 import Domain.Pizza;
+import Repository.InMemoryPizzaRepository;
+import Repository.OrderRepository;
+import Repository.PizzaRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class InMemoryOrderService implements OrderService{
+public class SimpleOrderService implements OrderService{
 
-    private List<InMemoryOrderRepository> listOrders;
-    private static Map<Long, Pizza> pizzas = new HashMap<>();
+    public final OrderRepository orderRepository;
+    public final PizzaService pizzaService;
 
-    static{
-        pizzas.put(1L, new Pizza(1L, "Sea", 33.33, Pizza.PizzaType.Sea));
-        pizzas.put(1L, new Pizza(2L, "Vagatarian", 44.44, Pizza.PizzaType.Vegetarian));
-        pizzas.put(1L, new Pizza(3L, "Meat", 55.55, Pizza.PizzaType.Meat));
+    public SimpleOrderService(OrderRepository orderRepository, PizzaService pizzaService) {
+        this.orderRepository = orderRepository;
+        this.pizzaService = pizzaService;
     }
 
 
-    public InMemoryOrderRepository placeNewOrder(Customer customer, Integer... pizzasId) {
+    @Override
+    public Order placeNewOrder(Customer customer, Long... pizzasId) {
         List<Pizza> pizzas = new ArrayList<>();
-
-        for (Integer id : pizzasId) {
-            pizzas.add(getPizzaById(id));
+        for (Long id : pizzasId) {
+            pizzas.add(pizzaService.findPizzaById(id));
         }
-        InMemoryOrderRepository newOrder = new InMemoryOrderRepository(customer.getId(), pizzas);
 
+        Order newOrder = new Order(1L, pizzas);
         saveOrder(newOrder);
         return newOrder;
-
     }
 
-    public Pizza getPizzaById(Integer id){
-        return new Pizza(1L, "Neapolitana", 33.33, Pizza.PizzaType.Meat);
-    }
-
-    public void saveOrder(InMemoryOrderRepository order){
+    public void saveOrder(Order newOrder){
+        orderRepository.saveOrder(newOrder);
         System.out.println("Repository.InMemoryOrderRepository saved");
     }
+
+
 
 }

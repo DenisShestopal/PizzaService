@@ -1,7 +1,7 @@
 import org.junit.Test;
 
-public class AppRunnerTest {
-    public AppRunnerTest(){
+public class PizzaAppTest {
+    public PizzaAppTest(){
 
     }
 
@@ -9,6 +9,6 @@ public class AppRunnerTest {
     public void testMain(){
         System.out.println("main");
         String[] args = null;
-        AppRunner.main(args);
+        PizzaApp.main(args);
     }
 }

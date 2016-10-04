@@ -1,13 +1,13 @@
-package Repository;
+package Domain;
 
-public class InMemoryPizzaRepository {
+public class Pizza {
 
     private Long id;
     private String name;
     private Double price;
     private PizzaType pizzaType;
 
-    public InMemoryPizzaRepository(Long id, String name, Double price, PizzaType pizzaType) {
+    public Pizza(Long id, String name, Double price, PizzaType pizzaType) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -46,7 +46,7 @@ public class InMemoryPizzaRepository {
         this.pizzaType = pizzaType;
     }
 
-    public static enum PizzaType {
+    public enum PizzaType {
         Vegetarian, Sea, Meat
     }
 }
