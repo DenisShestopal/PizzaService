@@ -6,7 +6,7 @@ import Infrastructure.Config.JavaConfig;
 import Repository.PizzaRepository;
 import Services.OrderService;
 
-public class PizzaApp {
+public class AppRunner {
 
     public static void main(String[] args) {
                 System.out.println("Pizza Service");
