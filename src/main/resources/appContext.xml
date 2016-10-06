@@ -5,13 +5,10 @@
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- bean definitions here -->
-    <bean name ="pizzaRepository"
-          class="Repository.InMemory.InMemoryPizzaRepository"
-         init-method="init"/>
 
-    <bean name ="orderRepository"
-          class="Repository.InMemory.InMemoryOrderRepository"/>
+    <!-- bean definitions here -->
+
+    <bean name="T1" class="Services.SomeServices.Test2SomeService"/>
 
     <bean name = "pizzaService"
           class="Services.Simple.SimplePizzaService">
@@ -22,6 +19,13 @@
           class="Services.Simple.SimpleOrderService">
         <constructor-arg ref="pizzaService"/>
         <constructor-arg ref="orderRepository"/>
+    </bean>
+
+    <bean class="Services.SomeServices.UsageSomeService"
+          init-method="init">
+        <constructor-arg>
+            <ref parent="T1"/>
+        </constructor-arg>
     </bean>
 
 </beans>
