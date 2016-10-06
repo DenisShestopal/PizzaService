@@ -6,10 +6,12 @@ public class Order {
 
     private Long id;
     private List<Pizza> pizzas;
+    private Customer customer;
 
-    public Order(Long id, List<Pizza> pizzas) {
+    public Order(Long id, Customer customer, List<Pizza> pizzas) {
         this.id = id;
         this.pizzas = pizzas;
+        this.customer = customer;
     }
 
     @Override
@@ -34,5 +36,13 @@ public class Order {
 
     public void setPizzas(List<Pizza> pizzas) {
         this.pizzas = pizzas;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

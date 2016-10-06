@@ -1,4 +1,4 @@
-package Infrastructure;
+package Infrastructure.Context;
 
 public interface Context {
 

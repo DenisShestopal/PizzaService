@@ -1,4 +1,7 @@
-package Infrastructure;
+package Infrastructure.Context;
+
+import Infrastructure.Config.Config;
+import Infrastructure.Config.JavaConfig;
 
 public class InitialContext {
 

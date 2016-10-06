@@ -1,21 +1,24 @@
-package Services;
+package Services.Simple;
 
 import Domain.Pizza;
-import Infrastructure.InitialContext;
 import Repository.PizzaRepository;
+import Services.PizzaService;
 
 public class SimplePizzaService implements PizzaService {
 
     private PizzaRepository pizzaRepository;
 
     public SimplePizzaService(PizzaRepository pizzaRepository){
-        //InitialContext context = new InitialContext();
-        //this.pizzaRepository = (PizzaRepository) context.getInstance("pizzaRepository");
         this.pizzaRepository = pizzaRepository;
     }
 
     @Override
-    public Pizza findPizzaById(Long id){
-        return pizzaRepository.find(id);
+    public PizzaRepository getPizzaRepository() {
+        return pizzaRepository;
+    }
+
+    @Override
+    public Pizza getPizzaById(Long id) {
+        return pizzaRepository.getPizzaById(id);
     }
 }

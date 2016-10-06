@@ -1,4 +1,4 @@
-package Infrastructure;
+package Infrastructure.Config;
 
 public interface Config {
 

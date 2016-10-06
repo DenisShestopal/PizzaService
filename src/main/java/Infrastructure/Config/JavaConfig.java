@@ -1,9 +1,9 @@
-package Infrastructure;
+package Infrastructure.Config;
 
-import Repository.InMemoryOrderRepository;
-import Repository.InMemoryPizzaRepository;
-import Services.SimpleOrderService;
-import Services.SimplePizzaService;
+import Repository.InMemory.InMemoryOrderRepository;
+import Repository.InMemory.InMemoryPizzaRepository;
+import Services.Simple.SimpleOrderService;
+import Services.Simple.SimplePizzaService;
 
 import java.util.HashMap;
 import java.util.Map;
