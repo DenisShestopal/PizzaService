@@ -16,8 +16,7 @@ public class SpringAppRunner {
         System.out.println(Arrays.toString(context.getBeanDefinitionNames()));
 
         PizzaRepository pizzaRepository = (PizzaRepository) context.getBean("pizzaRepository");
-        pizzaRepository.getPizzaById(1L);
-        System.out.println();
+        System.out.println(pizzaRepository.getPizzaById(1L));
 
         OrderService orderService = (OrderService) context.getBean("orderService");
         Order order = orderService.placeNewOrder(null, 1L, 2L, 3L);
