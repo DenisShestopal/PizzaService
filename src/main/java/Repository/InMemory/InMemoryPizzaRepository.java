@@ -16,11 +16,10 @@ public class InMemoryPizzaRepository implements PizzaRepository {
     private List<Pizza> pizzas = new ArrayList<>();
 
     @PostCreate
-    public List<Pizza> getPizzasList(){
+    public void init(){
         pizzas.add(new Pizza(1L, "Vegetarian", 33.33, Pizza.PizzaType.Vegetarian));
         pizzas.add(new Pizza(2L, "Sea", 44.44, Pizza.PizzaType.Sea));
         pizzas.add(new Pizza(3L, "Meat", 55.55, Pizza.PizzaType.Meat));
-        return pizzas;
     }
 
     @Override
