@@ -1,15 +1,19 @@
 package Domain;
 
+import java.math.BigDecimal;
+
 public class Customer {
 
     private Long id = 1L;
     private String name = "New user";
     private String address = "Kiev";
+    private BigDecimal discount;
 
     public Customer(Long id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.discount = new BigDecimal("0");
     }
 
     public Customer() {
@@ -30,6 +34,22 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
     @Override
@@ -57,13 +77,5 @@ public class Customer {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }

@@ -39,6 +39,7 @@ public class SpringAppRunner {
         }
         System.out.println(order);
         System.out.println("Orders price = " + order.getPrice());
+        System.out.println("added to the card: " + order.getCustomer().getDiscount());
 
         repoContext.close();
         appContext.close();

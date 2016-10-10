@@ -48,6 +48,7 @@ public class SimpleOrderService implements OrderService {
         orderRepository.countOrdersPrice(newOrder);
         orderRepository.countDiscount(newOrder);
         orderRepository.useDiscount(newOrder);
+        orderRepository.addOrdersDiscountToCard(newOrder, newOrder.getCustomer());
         orderRepository.saveOrder(newOrder);
         return newOrder;
     }
@@ -65,6 +66,7 @@ public class SimpleOrderService implements OrderService {
     @Override
     public void useDiscount(Order order) {
         orderRepository.useDiscount(order);
+        orderRepository.addOrdersDiscountToCard(order, order.getCustomer());
     }
 
     //    public void saveOrder(Order newOrder){

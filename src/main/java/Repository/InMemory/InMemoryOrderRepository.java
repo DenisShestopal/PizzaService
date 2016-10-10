@@ -1,5 +1,6 @@
 package Repository.InMemory;
 
+import Domain.Customer;
 import Domain.Order;
 import Domain.Pizza;
 import Infrastructure.Annotations.BenchMark;
@@ -58,6 +59,11 @@ public class InMemoryOrderRepository implements OrderRepository {
 
     @Override
     public void useDiscount(Order order) {
-        order.setPrice(order.getPrice().subtract(order.getDiscount()));
+        order.setPrice(order.getPrice().subtract(order.getDiscount()).subtract(order.getCustomer().getDiscount()));
+    }
+
+    @Override
+    public void addOrdersDiscountToCard(Order order, Customer customer) {
+        customer.setDiscount(order.getDiscount());
     }
 }

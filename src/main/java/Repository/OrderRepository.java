@@ -1,5 +1,6 @@
 package Repository;
 
+import Domain.Customer;
 import Domain.Order;
 
 import java.math.BigDecimal;
@@ -18,5 +19,7 @@ public interface OrderRepository {
     BigDecimal maxPizzaPriceInorder(Order order);
 
     void useDiscount(Order order);
+
+    void addOrdersDiscountToCard(Order order, Customer customer);
 
 }
