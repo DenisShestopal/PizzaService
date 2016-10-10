@@ -1,5 +1,6 @@
 package Domain;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Order {
@@ -7,11 +8,15 @@ public class Order {
     private Long id;
     private List<Pizza> pizzas;
     private Customer customer;
+    private BigDecimal price;
+    private BigDecimal discount;
 
     public Order(Long id, Customer customer, List<Pizza> pizzas) {
         this.id = id;
         this.pizzas = pizzas;
         this.customer = customer;
+        this.price = new BigDecimal("0");
+        this.discount = new BigDecimal("0");
     }
 
     @Override
@@ -44,5 +49,21 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 }

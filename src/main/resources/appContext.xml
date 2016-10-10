@@ -24,7 +24,7 @@
     <bean class="Services.SomeServices.UsageSomeService"
           init-method="init">
         <constructor-arg>
-            <ref parent="T1"/>
+            <bean name ="AAA" class="Services.SomeServices.Test2SomeService"/>
         </constructor-arg>
     </bean>
 

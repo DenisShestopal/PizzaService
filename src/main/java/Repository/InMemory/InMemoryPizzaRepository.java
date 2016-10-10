@@ -5,6 +5,7 @@ import Infrastructure.Annotations.PostCreate;
 import Repository.PizzaRepository;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,9 @@ public class InMemoryPizzaRepository implements PizzaRepository {
 
     @PostCreate
     public void init(){
-        pizzas.add(new Pizza(1L, "Vegetarian", 33.33, Pizza.PizzaType.Vegetarian));
-        pizzas.add(new Pizza(2L, "Sea", 44.44, Pizza.PizzaType.Sea));
-        pizzas.add(new Pizza(3L, "Meat", 55.55, Pizza.PizzaType.Meat));
+        pizzas.add(new Pizza(1L, "Vegetarian", new BigDecimal("33.33"), Pizza.PizzaType.Vegetarian));
+        pizzas.add(new Pizza(2L, "Sea", new BigDecimal("44.44"), Pizza.PizzaType.Sea));
+        pizzas.add(new Pizza(3L, "Meat", new BigDecimal("55.55"), Pizza.PizzaType.Meat));
     }
 
     @Override
@@ -39,7 +40,7 @@ public class InMemoryPizzaRepository implements PizzaRepository {
                 return pizza;
             }
         }
-        return (new Pizza(1L, "Vegetarian", 33.33, Pizza.PizzaType.Vegetarian));
+        return (new Pizza(1L, "Vegetarian", new BigDecimal("33.33"), Pizza.PizzaType.Vegetarian));
 // throw new IllegalArgumentException();
     }
 }
