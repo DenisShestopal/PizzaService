@@ -59,7 +59,9 @@ public class InMemoryOrderRepository implements OrderRepository {
 
     @Override
     public void useDiscount(Order order) {
-        order.setPrice(order.getPrice().subtract(order.getDiscount()).subtract(order.getCustomer().getDiscount()));
+        order.setPrice(order.getPrice()
+                .subtract(order.getDiscount())
+                .subtract(order.getCustomer().getDiscount().multiply(new BigDecimal("0.1"))));
     }
 
     @Override
