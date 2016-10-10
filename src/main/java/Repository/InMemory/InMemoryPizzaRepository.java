@@ -18,9 +18,9 @@ public class InMemoryPizzaRepository implements PizzaRepository {
 
     @PostCreate
     public void init(){
-        pizzas.add(new Pizza(1L, "Vegetarian", new BigDecimal("33.33"), Pizza.PizzaType.Vegetarian));
-        pizzas.add(new Pizza(2L, "Sea", new BigDecimal("44.44"), Pizza.PizzaType.Sea));
-        pizzas.add(new Pizza(3L, "Meat", new BigDecimal("55.55"), Pizza.PizzaType.Meat));
+        pizzas.add(new Pizza(1L, "Vegetarian", new BigDecimal("33.33"), Pizza.PizzaType.VEGETARIAN));
+        pizzas.add(new Pizza(2L, "Sea", new BigDecimal("44.44"), Pizza.PizzaType.SEA));
+        pizzas.add(new Pizza(3L, "Meat", new BigDecimal("55.55"), Pizza.PizzaType.MEAT));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class InMemoryPizzaRepository implements PizzaRepository {
                 return pizza;
             }
         }
-        return (new Pizza(1L, "Vegetarian", new BigDecimal("33.33"), Pizza.PizzaType.Vegetarian));
+        return (new Pizza(1L, "Vegetarian", new BigDecimal("33.33"), Pizza.PizzaType.VEGETARIAN));
 // throw new IllegalArgumentException();
     }
 }

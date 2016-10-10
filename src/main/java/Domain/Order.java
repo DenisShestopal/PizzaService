@@ -1,15 +1,22 @@
 package Domain;
 
+import Services.OrderService;
+
 import java.math.BigDecimal;
 import java.util.List;
 
 public class Order {
+
+    public enum OrderStatus {
+        NEW, IN_PROGRSS, CANCELED, DONE
+    }
 
     private Long id;
     private List<Pizza> pizzas;
     private Customer customer;
     private BigDecimal price;
     private BigDecimal discount;
+    private OrderStatus orderStatus;
 
     public Order(Long id, Customer customer, List<Pizza> pizzas) {
         this.id = id;
@@ -17,6 +24,7 @@ public class Order {
         this.customer = customer;
         this.price = new BigDecimal("0");
         this.discount = new BigDecimal("0");
+        this.orderStatus=OrderStatus.NEW;
     }
 
     @Override
@@ -65,5 +73,13 @@ public class Order {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

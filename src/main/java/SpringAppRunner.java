@@ -1,3 +1,4 @@
+import Domain.Customer;
 import Domain.Order;
 import Infrastructure.Exceptions.PizzasOutOfBoundException;
 import Repository.PizzaRepository;
@@ -32,7 +33,7 @@ public class SpringAppRunner {
         OrderService orderService = (OrderService) appContext.getBean("orderService");
         Order order = null;
         try {
-            order = orderService.placeNewOrder(null, 1L, 2L, 3L, 3L, 3L);
+            order = orderService.placeNewOrder(new Customer(1L, "Vasiliy", "Kiev"), 1L, 2L, 3L, 3L, 3L);
         } catch (PizzasOutOfBoundException e) {
             e.printStackTrace();
         }

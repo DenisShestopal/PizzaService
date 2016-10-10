@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 
 public class Pizza {
 
+    public enum PizzaType {
+        VEGETARIAN, SEA, MEAT
+    }
+
     private Long id;
     private String name;
     private BigDecimal price;
@@ -58,7 +62,4 @@ public class Pizza {
         this.pizzaType = pizzaType;
     }
 
-    public enum PizzaType {
-        Vegetarian, Sea, Meat
-    }
 }

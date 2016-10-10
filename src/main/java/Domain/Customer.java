@@ -2,12 +2,14 @@ package Domain;
 
 public class Customer {
 
-    private Long id;
-    private String name;
+    private Long id = 1L;
+    private String name = "New user";
+    private String address = "Kiev";
 
-    public Customer(Long id, String name) {
+    public Customer(Long id, String name, String address) {
         this.id = id;
         this.name = name;
+        this.address = address;
     }
 
     public Customer() {
@@ -55,5 +57,13 @@ public class Customer {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
