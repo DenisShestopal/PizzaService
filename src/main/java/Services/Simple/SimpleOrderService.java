@@ -64,16 +64,14 @@ public class SimpleOrderService implements OrderService {
         return newOrder;
     }
 
-    private Order createNewOrder() {
-        try {
-            return (Order) applicationContext.getBean("order");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-//        return null;
-        //to see that an NPE appears
-
+    Order createNewOrder() {
+//        try {
+//            return (Order) applicationContext.getBean("order");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+        throw new IllegalArgumentException();
     }
 
     @Override

@@ -11,7 +11,9 @@
           class="Services.Simple.SimplePizzaService" autowire="constructor"/>
 
     <bean name = "orderService"
-          class="Services.Simple.SimpleOrderService" autowire="constructor"/>
+          class="Services.Simple.SimpleOrderService" autowire="constructor">
+        <lookup-method name="createNewOrder" bean="order"/>
+    </bean>
 
     <bean name="order" class="Domain.Order"/>
 
