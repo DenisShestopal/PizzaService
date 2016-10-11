@@ -14,6 +14,8 @@
     <context:component-scan base-package="Services"/>
     <context:component-scan base-package="Domain"/>
 
+    <bean name="pizza" class="Infrastructure.MyFactoryBean"/>
+
     <bean name = "orderService"
           class="Services.Simple.SimpleOrderService">
         <lookup-method name="createNewOrder" bean="order"/>
