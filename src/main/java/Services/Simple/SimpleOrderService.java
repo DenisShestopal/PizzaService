@@ -8,6 +8,7 @@ import Infrastructure.Exceptions.PizzasOutOfBoundException;
 import Repository.OrderRepository;
 import Services.OrderService;
 import Services.PizzaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 //import Test.infrastructure.ApplicationContext;
 
@@ -16,10 +17,11 @@ import java.util.List;
 
 public class SimpleOrderService implements OrderService {
 
-    public final OrderRepository orderRepository;
-    public final PizzaService pizzaService;
+    public OrderRepository orderRepository;
+    public PizzaService pizzaService;
     private ApplicationContext applicationContext;
 
+    @Autowired
     public SimpleOrderService(OrderRepository orderRepository, PizzaService pizzaService) {
         this.orderRepository = orderRepository;
         this.pizzaService = pizzaService;

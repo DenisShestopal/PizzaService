@@ -11,17 +11,13 @@
 
 
     <!-- bean definitions here -->
-    <bean name = "pizzaService"
-          class="Services.Simple.SimplePizzaService" autowire="constructor"/>
+    <context:component-scan base-package="Services"/>
+    <context:component-scan base-package="Domain"/>
 
     <bean name = "orderService"
-          class="Services.Simple.SimpleOrderService" autowire="constructor">
+          class="Services.Simple.SimpleOrderService">
         <lookup-method name="createNewOrder" bean="order"/>
     </bean>
-
-    <bean name="order" class="Domain.Order"/>
-
-    <context:annotation-config/>
 
 
 </beans>

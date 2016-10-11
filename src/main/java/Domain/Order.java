@@ -1,10 +1,13 @@
 package Domain;
 
-import Services.OrderService;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Component
+@Scope(scopeName = "prototype")
 public class Order {
 
     private Long id;

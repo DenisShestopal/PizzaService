@@ -5,11 +5,13 @@ import Domain.Order;
 import Domain.Pizza;
 import Infrastructure.Annotations.BenchMark;
 import Repository.OrderRepository;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class InMemoryOrderRepository implements OrderRepository {
 
     private List<Order> listOrders = new ArrayList<>();

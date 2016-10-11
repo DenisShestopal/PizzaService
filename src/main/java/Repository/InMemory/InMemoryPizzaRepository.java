@@ -3,20 +3,21 @@ package Repository.InMemory;
 import Domain.Pizza;
 import Infrastructure.Annotations.PostCreate;
 import Repository.PizzaRepository;
+import org.springframework.stereotype.Repository;
 
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+@Repository
 public class InMemoryPizzaRepository implements PizzaRepository {
 
 
     private List<Pizza> pizzas = new ArrayList<>();
 
-    @PostCreate
+    @PostConstruct
     public void init(){
         pizzas.add(new Pizza(1L, "Vegetarian", new BigDecimal("33.33"), Pizza.PizzaType.VEGETARIAN));
         pizzas.add(new Pizza(2L, "Sea", new BigDecimal("44.44"), Pizza.PizzaType.SEA));
