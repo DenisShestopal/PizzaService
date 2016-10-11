@@ -71,6 +71,8 @@ public class SimpleOrderService implements OrderService {
             e.printStackTrace();
             return null;
         }
+//        return null;
+        //to see that an NPE appears
 
     }
 
