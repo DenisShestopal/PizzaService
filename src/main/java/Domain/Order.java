@@ -7,10 +7,6 @@ import java.util.List;
 
 public class Order {
 
-    public enum OrderStatus {
-        NEW, IN_PROGRSS, CANCELED, DONE
-    }
-
     private Long id;
     private List<Pizza> pizzas;
     private Customer customer;
