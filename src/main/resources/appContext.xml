@@ -16,6 +16,7 @@
 
     <bean name="pizza" class="Infrastructure.MyFactoryBean"/>
     <bean class="Infrastructure.BenchmarkBeanPostProcessor"/>
+    <!--<bean class="Infrastructure.CustomBeanFactoryPostProcessor"/>-->
 
     <bean name = "orderService"
           class="Services.Simple.SimpleOrderService">
