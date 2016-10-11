@@ -27,6 +27,10 @@ public class Order {
         this.orderStatus=OrderStatus.NEW;
     }
 
+    public Order(){
+
+    }
+
     @Override
     public String toString() {
         return "Order{" +

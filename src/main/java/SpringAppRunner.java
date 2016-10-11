@@ -3,7 +3,8 @@ import Domain.Order;
 import Infrastructure.Exceptions.PizzasOutOfBoundException;
 import Repository.PizzaRepository;
 import Services.OrderService;
-import Services.SomeServices.SomeService;
+//import Services.SomeServices.SomeService;
+//import Services.Simple.SimpleOrderService;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,13 +25,12 @@ public class SpringAppRunner {
 
         System.out.println(Arrays.toString(appContext.getBeanDefinitionNames()));
 
-        System.out.println(repoContext.getBean("T1", SomeService.class).getString());
-        System.out.println(appContext.getBean("T1", SomeService.class).getString());
-
         PizzaRepository pizzaRepository = (PizzaRepository) repoContext.getBean("pizzaRepository");
         System.out.println(pizzaRepository.getPizzaById(1L));
 
         OrderService orderService = (OrderService) appContext.getBean("orderService");
+        orderService.setApplicationContext(appContext);
+
         Order order = null;
         try {
             order = orderService.placeNewOrder(new Customer(1L, "Vasiliy", "Kiev"), 1L, 2L, 3L, 3L, 3L);

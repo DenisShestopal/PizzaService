@@ -3,10 +3,13 @@ package Services.Simple;
 import Domain.Customer;
 import Domain.Order;
 import Domain.Pizza;
+//import Infrastructure.Context.ApplicationContext;
 import Infrastructure.Exceptions.PizzasOutOfBoundException;
 import Repository.OrderRepository;
 import Services.OrderService;
 import Services.PizzaService;
+import org.springframework.context.ApplicationContext;
+//import Test.infrastructure.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +18,16 @@ public class SimpleOrderService implements OrderService {
 
     public final OrderRepository orderRepository;
     public final PizzaService pizzaService;
+    private ApplicationContext applicationContext;
 
     public SimpleOrderService(OrderRepository orderRepository, PizzaService pizzaService) {
         this.orderRepository = orderRepository;
         this.pizzaService = pizzaService;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext){
+        this.applicationContext = applicationContext;
     }
 
     @Override
@@ -43,7 +52,9 @@ public class SimpleOrderService implements OrderService {
             throw new PizzasOutOfBoundException();
         }
 
-        Order newOrder = new Order(1L, customer, pizzas);
+        Order newOrder = createNewOrder();
+        newOrder.setCustomer(customer);
+        newOrder.setPizzas(pizzas);
 
         orderRepository.countOrdersPrice(newOrder);
         orderRepository.countDiscount(newOrder);
@@ -51,6 +62,16 @@ public class SimpleOrderService implements OrderService {
         orderRepository.addOrdersDiscountToCard(newOrder, newOrder.getCustomer());
         orderRepository.saveOrder(newOrder);
         return newOrder;
+    }
+
+    private Order createNewOrder() {
+        try {
+            return (Order) applicationContext.getBean("order");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @Override
@@ -68,11 +89,5 @@ public class SimpleOrderService implements OrderService {
         orderRepository.useDiscount(order);
         orderRepository.addOrdersDiscountToCard(order, order.getCustomer());
     }
-
-    //    public void saveOrder(Order newOrder){
-//        orderRepository.saveOrder(newOrder);
-//        System.out.println("Repository.InMemory.InMemoryOrderRepository saved");
-//    }
-
 
 }

@@ -7,25 +7,13 @@
 
 
     <!-- bean definitions here -->
-
-    <bean name="T1" class="Services.SomeServices.Test2SomeService"/>
-
     <bean name = "pizzaService"
-          class="Services.Simple.SimplePizzaService">
-        <constructor-arg ref="pizzaRepository"/>
-    </bean>
+          class="Services.Simple.SimplePizzaService" autowire="constructor"/>
 
     <bean name = "orderService"
-          class="Services.Simple.SimpleOrderService">
-        <constructor-arg ref="pizzaService"/>
-        <constructor-arg ref="orderRepository"/>
-    </bean>
+          class="Services.Simple.SimpleOrderService" autowire="constructor"/>
 
-    <bean class="Services.SomeServices.UsageSomeService"
-          init-method="init">
-        <constructor-arg>
-            <bean name ="AAA" class="Services.SomeServices.Test2SomeService"/>
-        </constructor-arg>
-    </bean>
+    <bean name="order" class="Domain.Order"/>
+
 
 </beans>
