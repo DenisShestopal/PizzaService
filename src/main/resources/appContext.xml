@@ -15,6 +15,7 @@
     <context:component-scan base-package="Domain"/>
 
     <bean name="pizza" class="Infrastructure.MyFactoryBean"/>
+    <bean class="Infrastructure.BenchmarkBeanPostProcessor"/>
 
     <bean name = "orderService"
           class="Services.Simple.SimpleOrderService">
