@@ -65,12 +65,6 @@ public class SimpleOrderService implements OrderService {
     }
 
     Order createNewOrder() {
-//        try {
-//            return (Order) applicationContext.getBean("order");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
         throw new IllegalArgumentException();
     }
 
