@@ -1,4 +1,4 @@
-package Infrastructure;
+package Infrastructure.Annotations;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

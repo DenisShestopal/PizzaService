@@ -1,25 +1,44 @@
 package Domain;
 
 
-import java.math.BigDecimal;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name = "customers")
+@Component
+@Scope(scopeName = "prototype")
 public class Customer {
 
-    private Long id = 1L;
-    private String name = "New user";
-    private String address = "Kiev";
-    private BigDecimal discount;
+    /*Fields*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-    public Customer(Long id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.discount = new BigDecimal("0");
-    }
+    @Column(name = "name", nullable = false, length = 32)
+    private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "card_id")
+    private Card card;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
+
+    /*Constructors*/
     public Customer() {
 
     }
+
+    /*Methods*/
+    /*Getters&Setters*/
 
     public Long getId() {
         return id;
@@ -37,20 +56,44 @@ public class Customer {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public BigDecimal getDiscount() {
-        return discount;
+    public Card getCard() {
+        return card;
     }
 
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    /*Other methods*/
+    public double getCardBalance() {
+        if (hasCard()) {
+            return card.getBalance();
+        }
+        throw new RuntimeException("This customer has no card.");
+    }
+
+    public boolean hasCard() {
+        return (card != null);
+    }
+
+    public void increaseAccumulativeCardBalance(double amount) {
+        card.increaseCardBalance(amount);
     }
 
     @Override
