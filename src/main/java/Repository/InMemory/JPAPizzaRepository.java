@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@Repository
+@Repository("pizzaRepository")
 public class JPAPizzaRepository implements PizzaRepository {
 
     private EntityManager em;

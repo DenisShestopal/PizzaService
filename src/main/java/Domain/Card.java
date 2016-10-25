@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "accumulative_cards")
+@Table(name = "cards")
 @Component
 @Scope(scopeName = "prototype")
 public class Card {
@@ -18,7 +18,7 @@ public class Card {
     private Long id;
     @Column(name = "balance", nullable = false)
     private double balance;
-    @OneToOne(mappedBy = "accumulativeCard")
+    @OneToOne(mappedBy = "card")
     private Customer customer;
 
     /*Constructors*/
@@ -74,7 +74,7 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Accumulation card id: " + id +
-                "\nAccumulation card balance: " + balance + "\n";
+        return "Card id: " + id +
+                "\nCard balance: " + balance + "\n";
     }
 }
