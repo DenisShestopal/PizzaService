@@ -37,6 +37,11 @@ public class Customer {
 
     }
 
+    public Customer(Long id, String name, Address address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
     /*Methods*/
     /*Getters&Setters*/
 

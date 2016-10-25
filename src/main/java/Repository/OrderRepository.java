@@ -12,14 +12,20 @@ public interface OrderRepository {
 
     List<Order> getListOrders();
 
-    void countOrdersPrice(Order order);
+//    void countOrdersPrice(Order order);
+//
+//    void countDiscount(Order order);
+//
+//    BigDecimal maxPizzaPriceInorder(Order order);
 
-    void countDiscount(Order order);
+//    void useDiscount(Order order);
 
-    BigDecimal maxPizzaPriceInorder(Order order);
+//    void addOrdersDiscountToCard(Order order, Customer customer);
 
-    void useDiscount(Order order);
+    Order getOrderById(long id);
 
-    void addOrdersDiscountToCard(Order order, Customer customer);
+    void payOrderById(long id);
+
+    void cancelOrderById(long id);
 
 }

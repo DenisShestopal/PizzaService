@@ -17,10 +17,10 @@ public class AppRunner {
         OrderService orderService = context.getBean("orderService");
         Order order = null;
         try {
-            order = orderService.placeNewOrder(customer, 1L, 2L, 3L);
-        } catch (PizzasOutOfBoundException e) {
+            order = new Order();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(order);
+//        System.out.println(order);
     }
 }

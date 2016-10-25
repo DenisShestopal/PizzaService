@@ -26,8 +26,7 @@
     <bean name="order" class="Domain.Order" scope="prototype">
         <constructor-arg>
             <set>
-                <ref bean="accumulativeCardDiscount"/>
-                <ref bean="theMostExpensivePizzaDiscount"/>
+                <ref bean="cardDiscount"/>
             </set>
         </constructor-arg>
     </bean>

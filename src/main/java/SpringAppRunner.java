@@ -1,3 +1,4 @@
+import Domain.Address;
 import Domain.Customer;
 import Domain.Order;
 import Infrastructure.Exceptions.PizzasOutOfBoundException;
@@ -25,21 +26,18 @@ public class SpringAppRunner {
 
         System.out.println(Arrays.toString(appContext.getBeanDefinitionNames()));
 
-//        PizzaRepository pizzaRepository = (PizzaRepository) repoContext.getBean("pizzaRepository");
-//        System.out.println(pizzaRepository.getPizzaById(1L));
-
         OrderService orderService = (OrderService) appContext.getBean("orderService");
         orderService.setApplicationContext(appContext);
 
         Order order = null;
         try {
-            order = orderService.placeNewOrder(new Customer(1L, "Vasiliy", "Kiev"), 1L, 2L, 3L, 3L, 3L);
+            order = orderService.placeNewOrder(new Customer(1L, "Vasiliy", new Address()), 1L, 2L, 3L, 3L, 3L);
         } catch (PizzasOutOfBoundException e) {
             e.printStackTrace();
         }
         System.out.println(order);
-        System.out.println("Orders price = " + order.getPrice());
-        System.out.println("added to the card: " + order.getCustomer().getDiscount());
+        System.out.println("Orders price = " + order.getInitialPrice());
+        System.out.println("added to the card: " + order.getDiscount());
 
         repoContext.close();
         appContext.close();

@@ -14,11 +14,11 @@ public interface OrderService {
 
     PizzaService getPizzaService();
 
-    void countOrdersPrice(Order order);
-
-    void countDiscount(Order order);
-
-    void useDiscount(Order order);
+//    void countOrdersPrice(Order order);
+//
+//    void countDiscount(Order order);
+//
+//    void useDiscount(Order order);
 
    void setApplicationContext(ApplicationContext applicationContext);
 

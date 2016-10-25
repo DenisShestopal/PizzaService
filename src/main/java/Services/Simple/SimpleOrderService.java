@@ -13,7 +13,9 @@ import org.springframework.context.ApplicationContext;
 //import Test.infrastructure.ApplicationContext;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SimpleOrderService implements OrderService {
 
@@ -44,11 +46,11 @@ public class SimpleOrderService implements OrderService {
 
     @Override
     public Order placeNewOrder(Customer customer, Long... pizzasId) throws PizzasOutOfBoundException {
-        List<Pizza> pizzas = new ArrayList<>();
+        Map<Pizza, Integer> pizzas = new HashMap<>();
 
         if (pizzasId.length < 10) {
             for (Long id : pizzasId) {
-                pizzas.add(pizzaService.getPizzaById(id));
+                pizzas.put(pizzaService.getPizzaById(id),1);//TODO add pizzas amount
             }
         } else {
             throw new PizzasOutOfBoundException();
@@ -58,10 +60,10 @@ public class SimpleOrderService implements OrderService {
         newOrder.setCustomer(customer);
         newOrder.setPizzas(pizzas);
 
-        orderRepository.countOrdersPrice(newOrder);
-        orderRepository.countDiscount(newOrder);
-        orderRepository.useDiscount(newOrder);
-        orderRepository.addOrdersDiscountToCard(newOrder, newOrder.getCustomer());
+//        orderRepository.countOrdersPrice(newOrder);
+//        orderRepository.countDiscount(newOrder);
+//        orderRepository.useDiscount(newOrder);
+//        orderRepository.addOrdersDiscountToCard(newOrder, newOrder.getCustomer());
         orderRepository.saveOrder(newOrder);
         return newOrder;
     }
@@ -70,20 +72,20 @@ public class SimpleOrderService implements OrderService {
         throw new IllegalArgumentException();
     }
 
-    @Override
-    public void countOrdersPrice(Order order) {
-        orderRepository.countOrdersPrice(order);
-    }
-
-    @Override
-    public void countDiscount(Order order) {
-        orderRepository.countDiscount(order);
-    }
-
-    @Override
-    public void useDiscount(Order order) {
-        orderRepository.useDiscount(order);
-        orderRepository.addOrdersDiscountToCard(order, order.getCustomer());
-    }
+//    @Override
+//    public void countOrdersPrice(Order order) {
+//        orderRepository.countOrdersPrice(order);
+//    }
+//
+//    @Override
+//    public void countDiscount(Order order) {
+//        orderRepository.countDiscount(order);
+//    }
+//
+//    @Override
+//    public void useDiscount(Order order) {
+//        orderRepository.useDiscount(order);
+//        orderRepository.addOrdersDiscountToCard(order, order.getCustomer());
+//    }
 
 }
