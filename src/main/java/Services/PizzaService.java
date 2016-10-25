@@ -1,9 +1,7 @@
-package Services;
+package services;
 
-import Domain.Customer;
-import Domain.Order;
-import Domain.Pizza;
-import Repository.PizzaRepository;
+import domain.Pizza;
+import repository.PizzaRepository;
 
 public interface PizzaService {
 
@@ -12,4 +10,6 @@ public interface PizzaService {
 //    Pizza findPizzaById(Long id);
 
     Pizza getPizzaById(Long id);
+
+    Pizza addPizza(String name, Double price, Pizza.PizzaType type);
 }

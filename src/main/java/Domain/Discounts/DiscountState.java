@@ -1,4 +1,4 @@
-package Domain.Discounts;
+package domain.discounts;
 
 public enum DiscountState {
     ACTIVE {

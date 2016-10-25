@@ -1,18 +1,18 @@
-package Domain.Discounts;
+package domain.discounts;
 
-import Domain.Order;
-import Infrastructure.Utils.Utils;
+import domain.Order;
+import infrastructure.utils.Utils;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CardDiscount extends  Discount {
-    private final static int INITIAL_PRICE_PERCENTAGE_LIMIT = 30;
+    private final static int PERCENTAGE_LIMIT = 30;
     private final static int CARD_PERCENTAGE = 10;
 
     @Override
     public boolean canBeApplied(Order order) {
         this.order = order;
-        return isAccumulationCardActivated();
+        return isCardActivated();
     }
 
     @Override
@@ -20,29 +20,30 @@ public class CardDiscount extends  Discount {
         if (isMoreThanPercentageOfTotalPrice()) {
             return getInitialPriceMaxPercentage();
         }
-        return getAccumulationCardDiscount();
+        return getCardDiscount();
     }
 
-    private double getAccumulationCardDiscount() {
-        return Utils.getPercentageOfNumber(getAccumulationCardBalance(), CARD_PERCENTAGE);
+    private double getCardDiscount() {
+        return Utils.getPercentageOfNumber(getCardBalance(), CARD_PERCENTAGE);
     }
 
-    private boolean isAccumulationCardActivated() {
+    private boolean isCardActivated() {
         return order.getCustomer().hasCard();
     }
 
-    private double getAccumulationCardBalance() {
+
+    private double getCardBalance() {
         return order.getCustomer().getCardBalance();
     }
 
     private double getInitialPriceMaxPercentage() {
         double initialPrice = getInitialPrice();
-        return Utils.getPercentageOfNumber(initialPrice, INITIAL_PRICE_PERCENTAGE_LIMIT);
+        return Utils.getPercentageOfNumber(initialPrice, PERCENTAGE_LIMIT);
     }
 
     private boolean isMoreThanPercentageOfTotalPrice() {
         double initialPricePercentage = getInitialPriceMaxPercentage();
-        double accumulationCardPercentage = getAccumulationCardDiscount();
+        double accumulationCardPercentage = getCardDiscount();
         return (accumulationCardPercentage > initialPricePercentage);
     }
 

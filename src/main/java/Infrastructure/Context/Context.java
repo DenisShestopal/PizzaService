@@ -1,6 +1,6 @@
-package Infrastructure.Context;
-
-public interface Context {
-
-    <T> T getBean(String beanName);
-}
+//package infrastructure.context;
+//
+//public interface Context {
+//
+//    <T> T getBean(String beanName);
+//}

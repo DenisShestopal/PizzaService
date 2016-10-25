@@ -9,6 +9,6 @@ public class AppRunnerTest {
     public void testMain(){
         System.out.println("main");
         String[] args = null;
-        AppRunner.main(args);
+//        AppRunner.main(args);
     }
 }

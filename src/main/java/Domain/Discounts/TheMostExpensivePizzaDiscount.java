@@ -1,17 +1,17 @@
-package Domain.Discounts;
+package domain.discounts;
 
-import Domain.Order;
-import Domain.Pizza;
-import Infrastructure.Utils.Utils;
+import domain.Order;
+import domain.Pizza;
+import infrastructure.utils.Utils;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class TheMostExpensivePizzaDiscount extends  Discount {
+public class TheMostExpensivePizzaDiscount extends Discount {
 
-    private final static int MIN_AMOUNT_OF_PIZZAS = 4;
+    private final static int MIN_PIZZAS = 4;
     private final static int PIZZA_PRICE_PERCENTAGE = 30;
 
     @Override
@@ -31,7 +31,7 @@ public class TheMostExpensivePizzaDiscount extends  Discount {
     }
 
     private boolean isEnoughPizzasInOrder() {
-        return (order.getAmountOfPizzas() > MIN_AMOUNT_OF_PIZZAS);
+        return (order.getAmountOfPizzas() > MIN_PIZZAS);
     }
 
     private Map<Pizza, Integer> getTheMostExpensivePizzas() {

@@ -1,9 +1,10 @@
-package Services;
+package services;
 
-import Domain.Customer;
-import Domain.Order;
-import Infrastructure.Exceptions.PizzasOutOfBoundException;
-import Repository.OrderRepository;
+import domain.Customer;
+import domain.Order;
+import domain.Pizza;
+import infrastructure.exceptions.PizzasOutOfBoundException;
+import repository.OrderRepository;
 import org.springframework.context.ApplicationContext;
 //import Test.infrastructure.ApplicationContext;
 
@@ -14,12 +15,26 @@ public interface OrderService {
 
     PizzaService getPizzaService();
 
-//    void countOrdersPrice(Order order);
-//
-//    void countDiscount(Order order);
-//
-//    void useDiscount(Order order);
+    Pizza getPizzaById(Long id);
 
-   void setApplicationContext(ApplicationContext applicationContext);
+    Pizza addPizzaToOrderById(Long orderId, Long pizzaId);
+
+    Pizza removePizzaToOrderById(Long orderId, Long pizzaId);
+
+    Customer getCustomerById(Long id);
+
+    void saveOrder(Order newOrder);
+
+    Integer getNumberOfOrders();
+
+    void addPizza(String name, Double price, Pizza.PizzaType type);
+
+    void addCustomer(String name, String city, String street, boolean hasCard);
+
+    void payOrderById(Long id);
+
+    void cancelOrderById(Long id);
+
+    Double getTotalOrderPriceById(Long id);
 
 }

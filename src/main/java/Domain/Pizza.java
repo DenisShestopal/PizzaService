@@ -1,11 +1,10 @@
-package Domain;
+package domain;
 
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "pizzas")
@@ -37,6 +36,12 @@ public class Pizza {
     /*Constructors*/
     public Pizza(){
 
+    }
+
+    public Pizza(String name, Double price, PizzaType pizzaType) {
+        this.name = name;
+        this.price = price;
+        this.pizzaType = pizzaType;
     }
 
     public Pizza(Long id, String name, Double price, PizzaType pizzaType) {

@@ -1,4 +1,4 @@
-package Infrastructure.Utils;
+package infrastructure.utils;
 
 public class Utils {
 

@@ -1,19 +1,16 @@
-package Repository.InMemory;
+package repository.InMemory;
 
-import Domain.Pizza;
-import Infrastructure.Annotations.PostCreate;
-import Repository.PizzaRepository;
+import domain.Pizza;
+import repository.PizzaRepository;
 import org.springframework.stereotype.Repository;
 
 
 import javax.annotation.PostConstruct;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class InMemoryPizzaRepository implements PizzaRepository {
-
 
     private List<Pizza> pizzas = new ArrayList<>();
 
@@ -30,7 +27,7 @@ public class InMemoryPizzaRepository implements PizzaRepository {
     }
 
     @Override
-    public Pizza find(Long id) {
+    public Pizza findPizzaById(Long id) {
         return pizzas.get(id.intValue());
     }
 
@@ -42,6 +39,12 @@ public class InMemoryPizzaRepository implements PizzaRepository {
             }
         }
         return (new Pizza(1L, "Vegetarian", 33.33, Pizza.PizzaType.VEGETARIAN));
-// throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Pizza save(Pizza pizza) {
+        pizza.setId(Long.valueOf(pizzas.size() + 1));
+        pizzas.add(pizza);
+        return pizza;
     }
 }

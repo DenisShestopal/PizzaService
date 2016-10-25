@@ -1,16 +1,13 @@
-package Repository.InMemory;
+package repository.InMemory;
 
-import Domain.Customer;
-import Domain.Order;
-import Domain.Pizza;
-import Infrastructure.Annotations.BenchMark;
-import Repository.OrderRepository;
+import domain.Order;
+import domain.Pizza;
+import infrastructure.annotations.BenchMark;
+import repository.OrderRepository;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class InMemoryOrderRepository implements OrderRepository {
@@ -22,80 +19,65 @@ public class InMemoryOrderRepository implements OrderRepository {
         return listOrders;
     }
 
-    @BenchMark(value = true)
     @Override
-    public Order saveOrder(Order order) {
-        order.setId(getNextId());
-        listOrders.add(order);
-        return order;
-    }
-
-//    @Override
-//    public void countOrdersPrice(Order order) {
-//        Map<Pizza, Integer> pizzas = order.getPizzas();
-//        Double price = 0.0;
-//        for (Pizza pizza : pizzas.entrySet()) {
-//            price = price.add(pizza.getPrice());
-//        }
-//        order.setPrice(price);
-//    }
-//
-//    @Override
-//    public void countDiscount(Order order) {
-//        List<Pizza> pizzas = order.getPizzas();
-//        BigDecimal discount = new BigDecimal("0");
-//        if (pizzas.size() > 4) {
-//            discount = maxPizzaPriceInorder(order).multiply(new BigDecimal("0.7"));
-//        }
-//        order.setDiscount(discount);
-//    }
-
-//    @Override
-//    public BigDecimal maxPizzaPriceInorder(Order order) {
-//        List<Pizza> pizzas = order.getPizzas();
-//        BigDecimal price = new BigDecimal("0");
-//        for (Pizza pizza : pizzas) {
-//            if (pizza.getPrice().compareTo(price) == 1)
-//                price = pizza.getPrice();
-//        }
-//        return price;
-//    }
-
-//    @Override
-//    public void useDiscount(Order order) {
-//        order.setPrice(order.getPrice()
-//                .subtract(order.getDiscount())
-//                .subtract(order.getCustomer().getDiscount().multiply(new BigDecimal("0.1"))));
-//    }
-
-//    @Override
-//    public void addOrdersDiscountToCard(Order order, Customer customer) {
-//        customer.setDiscount(order.getDiscount());
-//    }
-
-    @Override
-    public Order getOrderById(long id) {
+    public Order getOrderById(Long id) {
         for (Order order : listOrders) {
             if (order.getId() == id) {
                 return order;
             }
         }
-        throw new RuntimeException("Such order id does not exist.");
+        throw new RuntimeException("Order's id not found");
     }
 
     @Override
-    public void payOrderById(long id) {
+    public Order confirmOrderById(Long id) {
+        Order order = getOrderById(id);
+        order.confirm();
+        return order;
+    }
+
+    @Override
+    public Order payOrderById(Long id) {
         Order order = getOrderById(id);
         order.pay();
+        return order;
     }
 
     @Override
-    public void cancelOrderById(long id) {
+    public Order cancelOrderById(Long id) {
         Order order = getOrderById(id);
         order.cancel();
+        return order;
+    }
+
+    @Override
+    public Order addPizzaByOrderId(Long orderId, Pizza pizza) {
+        Order order = getOrderById(orderId);
+        order.addPizza(pizza);
+        return order;
+    }
+
+    @Override
+    public Order removePizzaByOrderId(Long orderId, Pizza pizza) {
+        Order order = getOrderById(orderId);
+        order.removePizza(pizza);
+        return order;
+    }
+
+    public Integer getOrdersNumber(){
+        return listOrders.size();
     }
 
     private long getNextId() {
         return (listOrders.size() + 1);
+    }
+
+    @BenchMark(value = true)
+    @Override
+    public Order saveOrder(Order order) {
+        order.setId(getNextId());
+        listOrders.add(order);
+        order.confirm();
+        return order;
     }
 }

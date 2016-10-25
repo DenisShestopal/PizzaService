@@ -1,8 +1,8 @@
-package Domain;
+package domain;
 
-import Domain.Discounts.Discount;
-import Domain.Discounts.DiscountState;
-import Domain.Enums.Status;
+import domain.discounts.Discount;
+import domain.discounts.DiscountState;
+import domain.enums.OrderStatus;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
-    private Status status;
+    private OrderStatus status;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_id", nullable = false)
@@ -41,7 +41,7 @@ public class Order {
     private Set<Discount> activeDiscounts;
 
     public Order(Set<Discount> discounts) {
-        status = Status.NEW;
+        status = OrderStatus.NEW;
         pizzas = new HashMap<>();
         payment = new Payment();
         removeInactiveDiscounts(discounts);
@@ -50,6 +50,12 @@ public class Order {
 
     public Order(){
 
+    }
+
+    public Order(Map<Pizza, Integer> pizzas, Customer customer, Set<Discount> activeDiscounts) {
+        this.pizzas = pizzas;
+        this.customer = customer;
+        this.activeDiscounts = activeDiscounts;
     }
 
     @Override
@@ -193,18 +199,18 @@ public class Order {
     }
 
     public void cancel() {
-        status = status.previousStatus();
+        status = status.getCancelStatus();
     }
 
     public void confirm() {
-        status = status.nextStatus();
+        status = status.getNextStatus(status);
     }
 
     public void pay() {
         if (customer.hasCard()) {
-            customer.increaseAccumulativeCardBalance(getTotalPrice());
+            customer.increaseCardBalance(getTotalPrice());
         }
-        status = status.nextStatus();
+        status = status.getNextStatus(status);
     }
 
     public boolean isEmpty() {

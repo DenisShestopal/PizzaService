@@ -1,9 +1,8 @@
-package Repository;
+package repository;
 
-import Domain.Customer;
-import Domain.Order;
+import domain.Order;
+import domain.Pizza;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public interface OrderRepository {
@@ -12,20 +11,17 @@ public interface OrderRepository {
 
     List<Order> getListOrders();
 
-//    void countOrdersPrice(Order order);
-//
-//    void countDiscount(Order order);
-//
-//    BigDecimal maxPizzaPriceInorder(Order order);
+    Order addPizzaByOrderId(Long orderId, Pizza pizza);
 
-//    void useDiscount(Order order);
+    Order getOrderById(Long id);
 
-//    void addOrdersDiscountToCard(Order order, Customer customer);
+    Order payOrderById(Long id);
 
-    Order getOrderById(long id);
+    Order cancelOrderById(Long id);
 
-    void payOrderById(long id);
+    Order confirmOrderById(Long id);
 
-    void cancelOrderById(long id);
+    Order removePizzaByOrderId(Long orderId, Pizza pizza);
 
+    Integer getOrdersNumber();
 }

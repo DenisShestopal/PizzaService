@@ -1,4 +1,6 @@
-package Domain.Enums;
+package domain.enums;
+
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.util.*;
 
@@ -37,5 +39,29 @@ public enum OrderStatus {
 
     public boolean canChangeTo(OrderStatus newStatus) {
         return Transition.transitions.get(this).contains(newStatus);
+    }
+
+    public OrderStatus getNextStatus(OrderStatus status){
+        if (status.equals(OrderStatus.NEW))
+                return OrderStatus.IN_PROGRESS;
+        if (status.equals(OrderStatus.IN_PROGRESS))
+                return OrderStatus.DONE;
+        if (status.equals(OrderStatus.DONE))
+                return OrderStatus.DONE;
+        else return status;
+    }
+
+    public OrderStatus getPreviousStatus(OrderStatus status){
+        if (status.equals(OrderStatus.NEW))
+            return OrderStatus.NEW;
+        if (status.equals(OrderStatus.DONE))
+            return OrderStatus.IN_PROGRESS;
+        if (status.equals(OrderStatus.IN_PROGRESS))
+            return OrderStatus.NEW;
+        else return status;
+    }
+
+    public OrderStatus getCancelStatus(){
+        return OrderStatus.CANCELED;
     }
 }

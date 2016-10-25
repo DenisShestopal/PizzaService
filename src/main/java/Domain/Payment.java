@@ -1,8 +1,9 @@
-package Domain;
+package domain;
 
-import Domain.Discounts.Discount;
+import domain.discounts.Discount;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "payments")
@@ -21,6 +22,8 @@ public class Payment {
     private Double discount;
     @Column(name = "total_price", nullable = false)
     private Double totalPrice;
+    @Column(name = "date_time")
+    private LocalDateTime dateTime;
 
     /*Constructors*/
     public Payment() {
@@ -73,28 +76,24 @@ public class Payment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Payment)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         Payment payment = (Payment) o;
-
-        if (Double.compare(payment.initialPrice, initialPrice) != 0) return false;
-        if (Double.compare(payment.discount, discount) != 0) return false;
-        if (Double.compare(payment.totalPrice, totalPrice) != 0) return false;
-        return appliedDiscount != null ? appliedDiscount.equals(payment.appliedDiscount) : payment.appliedDiscount == null;
-
+        if (initialPrice != null ? !initialPrice.equals(payment.initialPrice) : payment.initialPrice != null)
+            return false;
+        if (appliedDiscount != null ? !appliedDiscount.equals(payment.appliedDiscount) : payment.appliedDiscount != null)
+            return false;
+        if (discount != null ? !discount.equals(payment.discount) : payment.discount != null) return false;
+        if (totalPrice != null ? !totalPrice.equals(payment.totalPrice) : payment.totalPrice != null) return false;
+        return dateTime != null ? dateTime.equals(payment.dateTime) : payment.dateTime == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(initialPrice);
-        result = (int) (temp ^ (temp >>> 32));
+        int result = initialPrice != null ? initialPrice.hashCode() : 0;
         result = 31 * result + (appliedDiscount != null ? appliedDiscount.hashCode() : 0);
-        temp = Double.doubleToLongBits(discount);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(totalPrice);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (discount != null ? discount.hashCode() : 0);
+        result = 31 * result + (totalPrice != null ? totalPrice.hashCode() : 0);
+        result = 31 * result + (dateTime != null ? dateTime.hashCode() : 0);
         return result;
     }
 

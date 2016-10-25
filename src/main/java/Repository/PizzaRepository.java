@@ -1,6 +1,6 @@
-package Repository;
+package repository;
 
-import Domain.Pizza;
+import domain.Pizza;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ public interface PizzaRepository {
 
    Pizza getPizzaById(Long id);
 
-   Pizza find(Long id);
+   Pizza findPizzaById(Long id);
 
-//   List<Pizza> getPizzasList();
+   Pizza save(Pizza pizza);
 
 }

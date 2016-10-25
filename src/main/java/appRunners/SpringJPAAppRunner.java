@@ -1,3 +1,4 @@
+package appRunners;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -7,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Arrays;
 
-public class SpringJPAAppRunner {
+public class SpringJpaAppRunner {
 
     public static void main(String ... args){
         ConfigurableApplicationContext repoContext =

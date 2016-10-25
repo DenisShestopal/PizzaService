@@ -1,8 +1,9 @@
-package Services.Simple;
+package services.simple;
 
-import Domain.Pizza;
-import Repository.PizzaRepository;
-import Services.PizzaService;
+import domain.Pizza;
+import infrastructure.annotations.BenchMark;
+import repository.PizzaRepository;
+import services.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +32,14 @@ public class SimplePizzaService implements PizzaService {
         return pizzaRepository.getPizzaById(id);
     }
 
+    @Override
+    @BenchMark(value = true)
+    public Pizza addPizza(String name, Double price, Pizza.PizzaType type) {
+        Pizza newPizza = new Pizza();
+        newPizza.setName(name);
+        newPizza.setPrice(price);
+        newPizza.setPizzaType(type);
+        pizzaRepository.save(newPizza);
+        return newPizza;
+    }
 }

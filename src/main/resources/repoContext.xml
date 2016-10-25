@@ -14,21 +14,31 @@
 
     <!-- bean definitions here -->
 
-    <context:component-scan base-package="Repository"/>
+    <context:component-scan base-package="repository"/>
 
     <context:property-placeholder
         system-properties-mode="OVERRIDE"
         location="classpath:jdbc.properties"/>
 
+    <!-- Database Information Lab-->
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
+          <!--destroy-method="close">-->
+        <!--<property name="driverClassName" value="${driver}"/>-->
+        <!--<property name="url" value="${url}"/>-->
+        <!--<property name="username" value="${user}"/>-->
+        <!--<property name="password" value="${password}"/>-->
+        <!--<property name="initialSize" value="5"/>-->
+    <!--</bean>-->
+
+    <!-- Database Information home-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
-        <property name="driverClassName" value="${driver}"/>
-        <property name="url" value="${url}"/>
-        <property name="username" value="${user}"/>
-        <property name="password" value="${password}"/>
-        <property name="initialSize" value="5"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/pizza"/>
+        <property name="username" value="root"/>
+        <property name="password" value="password"/>
     </bean>
-
 
     <bean name="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -37,7 +47,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
-        <property name="packagesToScan" value="Domain"/>
+        <property name="packagesToScan" value="domain"/>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>

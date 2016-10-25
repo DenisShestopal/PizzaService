@@ -1,18 +1,18 @@
-package Infrastructure.Context;
-
-import Infrastructure.Config.Config;
-import Infrastructure.Config.JavaConfig;
-
-public class InitialContext {
-
-    private static Config config = new JavaConfig();
-
-    public <T> T getInstance(String name) {
-        Class<?> type = config.getImpl(name);
-        try {
-            return (T) type.newInstance();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-}
+//package infrastructure.context;
+//
+//import infrastructure.config.Config;
+//import infrastructure.config.JavaConfig;
+//
+//public class InitialContext {
+//
+//    private static Config config = new JavaConfig();
+//
+//    public <T> T getInstance(String name) {
+//        Class<?> type = config.getImpl(name);
+//        try {
+//            return (T) type.newInstance();
+//        } catch (Exception ex) {
+//            throw new RuntimeException(ex);
+//        }
+//    }
+//}

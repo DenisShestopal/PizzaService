@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 
 import org.springframework.context.annotation.Scope;
@@ -35,6 +35,11 @@ public class Customer {
     /*Constructors*/
     public Customer() {
 
+    }
+
+    public Customer(String name, Address address) {
+        this.name = name;
+        this.address = address;
     }
 
     public Customer(Long id, String name, Address address) {
@@ -97,7 +102,7 @@ public class Customer {
         return (card != null);
     }
 
-    public void increaseAccumulativeCardBalance(double amount) {
+    public void increaseCardBalance(double amount) {
         card.increaseCardBalance(amount);
     }
 

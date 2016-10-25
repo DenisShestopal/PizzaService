@@ -11,44 +11,27 @@
 
 
     <!-- bean definitions here -->
-    <context:component-scan base-package="Services"/>
-    <context:component-scan base-package="Domain"/>
+    <context:component-scan base-package="services"/>
+    <context:component-scan base-package="domain"/>
 
-    <!--<bean name="pizza" class="Infrastructure.Annotations.MyFactoryBean"/>-->
-    <bean class="Infrastructure.Annotations.BenchmarkBeanPostProcessor"/>
-    <!--<bean class="Infrastructure.CustomBeanFactoryPostProcessor"/>-->
+    <bean class="infrastructure.annotations.BenchmarkBeanPostProcessor"/>
+    <!--<bean class="infrastructure.CustomBeanFactoryPostProcessor"/>-->
 
     <!--<bean name = "orderService"-->
-          <!--class="Services.Simple.SimpleOrderService">-->
+          <!--class="services.simple.SimpleOrderService">-->
         <!--<lookup-method name="createNewOrder" bean="order"/>-->
     <!--</bean>-->
 
-    <bean name="pizzaService" class="Services.Simple.SimplePizzaService">
-        <!--<lookup-method name="createNewPizza" bean="pizza"/>-->
+    <bean name="pizzaService" class="services.simple.SimplePizzaService">
     </bean>
 
-    <!--<bean name="customerService" class="services.SimpleCustomerService">-->
-        <!--<lookup-method name="createNewCustomer" bean="customer"/>-->
-    <!--</bean>-->
-
-    <!--<bean name="addressService" class="ua.fantotsy.services.address.SimpleAddressService">-->
-        <!--<lookup-method name="createNewAddress" bean="address"/>-->
-    <!--</bean>-->
-
-    <!--<bean name="accumulativeCardService" class="ua.fantotsy.services.accumulativeCard.SimpleAccumulativeCardService">-->
-        <!--<lookup-method name="createNewAccumulativeCard" bean="accumulativeCard"/>-->
-    <!--</bean>-->
-
-    <bean name="orderService" class="Services.Simple.SimpleOrderService">
-        <!--<lookup-method name="createNewOrder" bean="order"/>-->
+    <bean name="customerService" class="services.simple.SimpleCustomerService">
     </bean>
 
-    <bean name="order" class="Domain.Order" scope="prototype">
-        <!--<constructor-arg>-->
-            <!--<set>-->
-                <!--<ref bean="cardDiscount"/>-->
-            <!--</set>-->
-        <!--</constructor-arg>-->
+    <bean name="orderService" class="services.simple.SimpleOrderService">
+    </bean>
+
+    <bean name="order" class="domain.Order" scope="prototype">
     </bean>
 
 

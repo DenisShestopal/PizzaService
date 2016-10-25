@@ -1,6 +1,6 @@
-package Domain.Discounts;
+package domain.discounts;
 
-import Domain.Order;
+import domain.Order;
 
 import javax.persistence.*;
 
@@ -19,7 +19,7 @@ public abstract class Discount {
     protected Order order;
 
     /*Constructors*/
-    Discount() {
+    public Discount() {
         name = this.getClass().getSimpleName();
         state = DiscountState.ACTIVE;
     }

@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -29,6 +29,11 @@ public class Address {
 
     public Address(Long id, String city, String street) {
         this.id = id;
+        this.city = city;
+        this.street = street;
+    }
+
+    public Address(String city, String street) {
         this.city = city;
         this.street = street;
     }
