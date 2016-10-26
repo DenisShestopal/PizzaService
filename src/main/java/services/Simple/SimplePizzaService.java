@@ -39,7 +39,7 @@ public class SimplePizzaService implements PizzaService {
         newPizza.setName(name);
         newPizza.setPrice(price);
         newPizza.setPizzaType(type);
-        pizzaRepository.save(newPizza);
+        pizzaRepository.savePizza(newPizza);
         return newPizza;
     }
 }

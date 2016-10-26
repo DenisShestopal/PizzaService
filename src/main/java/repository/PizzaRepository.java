@@ -13,6 +13,6 @@ public interface PizzaRepository {
 
    Pizza findPizzaById(Long id);
 
-   Pizza save(Pizza pizza);
+   Pizza savePizza(Pizza pizza);
 
 }

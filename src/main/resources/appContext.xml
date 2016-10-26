@@ -3,11 +3,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
     <!-- bean definitions here -->
@@ -18,8 +21,8 @@
     <!--<bean class="infrastructure.CustomBeanFactoryPostProcessor"/>-->
 
     <!--<bean name = "orderService"-->
-          <!--class="services.simple.SimpleOrderService">-->
-        <!--<lookup-method name="createNewOrder" bean="order"/>-->
+    <!--class="services.simple.SimpleOrderService">-->
+    <!--<lookup-method name="createNewOrder" bean="order"/>-->
     <!--</bean>-->
 
     <bean name="pizzaService" class="services.simple.SimplePizzaService">
@@ -34,5 +37,6 @@
     <bean name="order" class="domain.Order" scope="prototype">
     </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

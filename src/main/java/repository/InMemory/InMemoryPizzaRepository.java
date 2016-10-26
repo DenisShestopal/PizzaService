@@ -42,7 +42,7 @@ public class InMemoryPizzaRepository implements PizzaRepository {
     }
 
     @Override
-    public Pizza save(Pizza pizza) {
+    public Pizza savePizza(Pizza pizza) {
         pizza.setId(Long.valueOf(pizzas.size() + 1));
         pizzas.add(pizza);
         return pizza;
