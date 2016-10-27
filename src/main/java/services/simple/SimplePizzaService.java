@@ -1,6 +1,7 @@
 package services.simple;
 
 import domain.Pizza;
+import domain.enums.PizzaType;
 import infrastructure.annotations.BenchMark;
 import repository.PizzaRepository;
 import services.PizzaService;
@@ -34,7 +35,7 @@ public class SimplePizzaService implements PizzaService {
 
     @Override
     @BenchMark(value = true)
-    public Pizza addPizza(String name, Double price, Pizza.PizzaType type) {
+    public Pizza addPizza(String name, Double price, PizzaType type) {
         Pizza newPizza = new Pizza();
         newPizza.setName(name);
         newPizza.setPrice(price);

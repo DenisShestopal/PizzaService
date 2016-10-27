@@ -5,7 +5,7 @@ import infrastructure.utils.Utils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CardDiscount extends  Discount {
+public class CardDiscount extends Discount {
     private final static int PERCENTAGE_LIMIT = 30;
     private final static int CARD_PERCENTAGE = 10;
 
@@ -43,8 +43,8 @@ public class CardDiscount extends  Discount {
 
     private boolean isMoreThanPercentageOfTotalPrice() {
         double initialPricePercentage = getInitialPriceMaxPercentage();
-        double accumulationCardPercentage = getCardDiscount();
-        return (accumulationCardPercentage > initialPricePercentage);
+        double cardPercentage = getCardDiscount();
+        return (cardPercentage > initialPricePercentage);
     }
 
     private double getInitialPrice() {

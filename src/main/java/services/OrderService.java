@@ -3,6 +3,7 @@ package services;
 import domain.Customer;
 import domain.Order;
 import domain.Pizza;
+import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
 import repository.OrderRepository;
 //import test1.infrastructure.ApplicationContext;
@@ -26,7 +27,7 @@ public interface OrderService {
 
     Integer getNumberOfOrders();
 
-    void addPizza(String name, Double price, Pizza.PizzaType type);
+    void addPizza(String name, Double price, PizzaType type);
 
     void addCustomer(String name, String city, String street, boolean hasCard);
 

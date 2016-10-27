@@ -1,6 +1,7 @@
 package repository.inMemory;
 
 import domain.Pizza;
+import domain.enums.PizzaType;
 import repository.PizzaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,9 +17,9 @@ public class InMemoryPizzaRepository implements PizzaRepository {
 
     @PostConstruct
     public void init(){
-        pizzas.add(new Pizza(1L, "Vegetarian", 33.33, Pizza.PizzaType.VEGETARIAN));
-        pizzas.add(new Pizza(2L, "Sea", 44.44, Pizza.PizzaType.SEA));
-        pizzas.add(new Pizza(3L, "Meat", 55.55, Pizza.PizzaType.MEAT));
+        pizzas.add(new Pizza(1L, "Vegetarian", 33.33, PizzaType.VEGETARIAN));
+        pizzas.add(new Pizza(2L, "Sea", 44.44, PizzaType.SEA));
+        pizzas.add(new Pizza(3L, "Meat", 55.55, PizzaType.MEAT));
     }
 
     @Override
@@ -38,7 +39,7 @@ public class InMemoryPizzaRepository implements PizzaRepository {
                 return pizza;
             }
         }
-        return (new Pizza(1L, "Vegetarian", 33.33, Pizza.PizzaType.VEGETARIAN));
+        return (new Pizza(1L, "Vegetarian", 33.33, PizzaType.VEGETARIAN));
     }
 
     @Override

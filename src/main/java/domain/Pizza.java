@@ -1,6 +1,7 @@
 package domain;
 
 
+import domain.enums.PizzaType;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +12,6 @@ import javax.persistence.*;
 @Component
 @Scope(scopeName = "prototype")
 public class Pizza {
-
-    public enum PizzaType {
-        VEGETARIAN, SEA, MEAT
-    }
 
     /*Fields*/
     @Id

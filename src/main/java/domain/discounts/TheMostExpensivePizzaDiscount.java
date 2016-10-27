@@ -11,7 +11,7 @@ import java.util.Map;
 @Component
 public class TheMostExpensivePizzaDiscount extends Discount {
 
-    private final static int MIN_PIZZAS = 4;
+    private final static int MIN_PIZZAS = 3;
     private final static int PIZZA_PRICE_PERCENTAGE = 30;
 
     @Override

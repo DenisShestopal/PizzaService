@@ -1,6 +1,7 @@
 package services;
 
 import domain.Pizza;
+import domain.enums.PizzaType;
 import repository.PizzaRepository;
 
 public interface PizzaService {
@@ -11,5 +12,5 @@ public interface PizzaService {
 
     Pizza getPizzaById(Long id);
 
-    Pizza addPizza(String name, Double price, Pizza.PizzaType type);
+    Pizza addPizza(String name, Double price, PizzaType type);
 }

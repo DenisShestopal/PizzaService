@@ -2,7 +2,7 @@ package appRunners;
 
 
 import domain.Order;
-import domain.Pizza;
+import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,7 +24,7 @@ public class SpringAppRunner {
 
         OrderService orderService = (OrderService) appContext.getBean("orderService");
 
-        orderService.addPizza("newone", 300.0, Pizza.PizzaType.MEAT);
+        orderService.addPizza("newone", 300.0, PizzaType.MEAT);
         orderService.addCustomer("Vasya", "Kyiv", "K18a", true);
 
         Order order1 = null;

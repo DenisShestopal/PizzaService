@@ -4,6 +4,7 @@ import domain.*;
 import domain.discounts.CardDiscount;
 import domain.discounts.Discount;
 import domain.discounts.TheMostExpensivePizzaDiscount;
+import domain.enums.PizzaType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,9 +21,9 @@ public class JpaAppRunner {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpa");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Pizza pizza1 = new Pizza("Diabola", 200.0, Pizza.PizzaType.MEAT);
-        Pizza pizza2 = new Pizza("Neapolitana", 300.0, Pizza.PizzaType.VEGETARIAN);
-        Pizza pizza3 = new Pizza("Hawaii", 400.0, Pizza.PizzaType.SEA);
+        Pizza pizza1 = new Pizza("Diabola", 200.0, PizzaType.MEAT);
+        Pizza pizza2 = new Pizza("Neapolitana", 300.0, PizzaType.VEGETARIAN);
+        Pizza pizza3 = new Pizza("Hawaii", 400.0, PizzaType.SEA);
 
         Map<Pizza, Integer> pizzas1 = new HashMap<Pizza, Integer>() {{
             put(pizza1, 2);

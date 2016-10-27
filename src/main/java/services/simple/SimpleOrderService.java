@@ -4,6 +4,7 @@ import domain.Customer;
 import domain.Order;
 import domain.Pizza;
 //import infrastructure.context.ApplicationContext;
+import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
 import repository.OrderRepository;
 import services.CustomerService;
@@ -100,7 +101,7 @@ public class SimpleOrderService implements OrderService {
     }
 
     @Override
-    public void addPizza(String name, Double price, Pizza.PizzaType type) {
+    public void addPizza(String name, Double price, PizzaType type) {
         pizzaService.addPizza(name, price, type);
     }
 
