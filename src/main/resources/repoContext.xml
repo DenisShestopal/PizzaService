@@ -14,7 +14,7 @@
 
     <!-- bean definitions here -->
 
-    <context:component-scan base-package="repository"/>
+    <context:component-scan base-package="repository1"/>
 
     <context:property-placeholder
         system-properties-mode="OVERRIDE"
@@ -47,7 +47,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
-        <property name="packagesToScan" value="domain"/>
+        <property name="packagesToScan" value="domain1"/>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
