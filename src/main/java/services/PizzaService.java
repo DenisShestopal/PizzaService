@@ -1,7 +1,7 @@
 package services;
 
-import domain1.Pizza;
-import repository1.PizzaRepository;
+import domain.Pizza;
+import repository.PizzaRepository;
 
 public interface PizzaService {
 

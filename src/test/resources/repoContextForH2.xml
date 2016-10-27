@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/jdbc
         http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-    <context:component-scan base-package="repository1"/>
+    <context:component-scan base-package="repository"/>
 
     <jdbc:embedded-database id="dataSource" type="H2">
 
@@ -26,7 +26,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
-        <property name="packagesToScan" value="domain1"/>
+        <property name="packagesToScan" value="domain"/>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>

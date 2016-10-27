@@ -1,6 +1,6 @@
 package services;
 
-import domain1.Customer;
+import domain.Customer;
 
 public interface CustomerService {
 

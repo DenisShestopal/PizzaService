@@ -1,11 +1,11 @@
 package services;
 
-import domain1.Customer;
-import domain1.Order;
-import domain1.Pizza;
-import infrastructure1.exceptions1.PizzasOutOfBoundException;
-import repository1.OrderRepository;
-//import test1.infrastructure1.ApplicationContext;
+import domain.Customer;
+import domain.Order;
+import domain.Pizza;
+import infrastructure.exceptions.PizzasOutOfBoundException;
+import repository.OrderRepository;
+//import test1.infrastructure.ApplicationContext;
 
 public interface OrderService {
     Order placeNewOrder(Customer customer, Long... pizzasId) throws PizzasOutOfBoundException;
