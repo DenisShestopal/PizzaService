@@ -18,29 +18,29 @@ public class SimplePizzaService implements PizzaService {
 //        this.pizzaRepository = pizzaRepository;
 //    }
 
-    @Autowired
-    public SimplePizzaService(PizzaRepository pizzaRepository){
-        this.pizzaRepository = pizzaRepository;
-    }
-
-    @Override
-    public PizzaRepository getPizzaRepository() {
-        return pizzaRepository;
-    }
-
-    @Override
-    public Pizza getPizzaById(Long id) {
-        return pizzaRepository.getPizzaById(id);
-    }
-
-    @Override
-    @BenchMark(value = true)
-    public Pizza addPizza(String name, Double price, PizzaType type) {
-        Pizza newPizza = new Pizza();
-        newPizza.setName(name);
-        newPizza.setPrice(price);
-        newPizza.setPizzaType(type);
-        pizzaRepository.savePizza(newPizza);
-        return newPizza;
-    }
+//    @Autowired
+//    public SimplePizzaService(PizzaRepository pizzaRepository){
+//        this.pizzaRepository = pizzaRepository;
+//    }
+//
+//    @Override
+//    public PizzaRepository getPizzaRepository() {
+//        return pizzaRepository;
+//    }
+//
+//    @Override
+//    public Pizza getPizzaById(Long id) {
+//        return pizzaRepository.getPizzaById(id);
+//    }
+//
+//    @Override
+//    @BenchMark(value = true)
+//    public Pizza addPizza(String name, Double price, PizzaType type) {
+//        Pizza newPizza = new Pizza();
+//        newPizza.setName(name);
+//        newPizza.setPrice(price);
+//        newPizza.setPizzaType(type);
+//        pizzaRepository.savePizza(newPizza);
+//        return newPizza;
+//    }
 }

@@ -1,6 +1,6 @@
 package infrastructure.utils;
 
-public class Utils {
+public class PizzaUtils {
 
     public static boolean isAllowedPercentage(int percentage) {
         return ((percentage >= 1) && (percentage <= 100));

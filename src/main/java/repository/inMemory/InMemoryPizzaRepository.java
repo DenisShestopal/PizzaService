@@ -1,7 +1,12 @@
 package repository.inMemory;
 
+import domain.Order;
 import domain.Pizza;
 import domain.enums.PizzaType;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import repository.PizzaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,36 +15,40 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @Repository
-public class InMemoryPizzaRepository implements PizzaRepository {
+public class InMemoryPizzaRepository extends InMemoryBaseRepository<Pizza> implements PizzaRepository {
 
     private List<Pizza> pizzas = new ArrayList<>();
-
-    @PostConstruct
-    public void init(){
-        pizzas.add(new Pizza(1L, "Vegetarian", 33.33, PizzaType.VEGETARIAN));
-        pizzas.add(new Pizza(2L, "Sea", 44.44, PizzaType.SEA));
-        pizzas.add(new Pizza(3L, "Meat", 55.55, PizzaType.MEAT));
-    }
+    private SessionFactory sessionFactory;
 
     @Override
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
     public List<Pizza> getPizzas() {
+        Session session = getSessionFactory().getCurrentSession();
+        pizzas = session.createQuery("from pizzas").list();
         return pizzas;
     }
 
     @Override
-    public Pizza findPizzaById(Long id) {
-        return pizzas.get(id.intValue());
-    }
+    public Pizza findById(Long id) {
+        Session session = getSessionFactory().getCurrentSession();
+        Pizza pizza;
 
-    @Override
-    public Pizza getPizzaById(Long id) {
-        for (Pizza pizza : pizzas) {
-            if (pizza.getId() == id) {
-                return pizza;
-            }
-        }
-        return (new Pizza(1L, "Vegetarian", 33.33, PizzaType.VEGETARIAN));
+        if (doesExistById(id))
+            pizza = (Pizza) session.createQuery("select id from domain.Pizza o where o.id = :pizzaId")
+                    .setParameter("pizzaId", id)
+                    .uniqueResult();
+        else
+            throw new RuntimeException("No such pizza found");
+
+        return pizza;
     }
 
     @Override
@@ -47,5 +56,18 @@ public class InMemoryPizzaRepository implements PizzaRepository {
         pizza.setId(Long.valueOf(pizzas.size() + 1));
         pizzas.add(pizza);
         return pizza;
+    }
+
+    public boolean doesExistById(Long id) {
+        Session session = getSessionFactory().getCurrentSession();
+        try {
+            session.createQuery("select id from domain.Pizza o where o.id = :pizzaId")
+                    .setParameter("pizzaId", id)
+                    .uniqueResult();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

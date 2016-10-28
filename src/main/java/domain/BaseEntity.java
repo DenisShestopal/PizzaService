@@ -3,8 +3,6 @@ package domain;
 import lombok.*;
 import javax.persistence.*;
 
-@Getter
-@Setter
 @ToString
 @EqualsAndHashCode
 @MappedSuperclass
@@ -17,5 +15,13 @@ public abstract class BaseEntity {
 
     public boolean isNew() {
         return (this.id == null);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

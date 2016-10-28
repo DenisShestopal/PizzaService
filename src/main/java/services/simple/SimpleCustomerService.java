@@ -16,18 +16,24 @@ public class SimpleCustomerService implements CustomerService {
 
     @Override
     public Customer getCustomerById(Long id) {
-        return customerRepository.findCustomerById(id);
+        return customerRepository.findById(id);
     }
+
+//    @Override
+//    public void addCustomer(String name, String city, String street, boolean hasCard) {
+//        Customer newCustomer = new Customer();
+//        newCustomer.setName(name);
+////        newCustomer.setAddress(new Address(city, street));
+//        if (hasCard) {
+//            Card card = new Card();
+//            newCustomer.setCard(card);//TODO refactor
+//        }
+//        customerRepository.addCustomer(newCustomer);
+//    }
+
 
     @Override
     public void addCustomer(String name, String city, String street, boolean hasCard) {
-        Customer newCustomer = new Customer();
-        newCustomer.setName(name);
-//        newCustomer.setAddress(new Address(city, street));
-        if (hasCard) {
-            Card card = new Card();
-            newCustomer.setCard(card);
-        }
-        customerRepository.saveCustomer(newCustomer);
+
     }
 }

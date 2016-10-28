@@ -1,40 +1,49 @@
 package repository.inMemory;
 
 import domain.Customer;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.SessionFactory;
 import repository.CustomerRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @Repository
-public class InMemoryCustomerRepository implements CustomerRepository {
+public class InMemoryCustomerRepository extends InMemoryBaseRepository<Customer> implements CustomerRepository {
 
-    /*Fields*/
     private List<Customer> customers = new ArrayList<>();
-
-    /*Public Methods*/
-    @Override
-    public Customer findCustomerById(Long id) {
-        if (customers.size() > 0) {
-            for (Customer customer : customers) {
-                if (customer.getId().equals(id)) {
-                    return customer;
-                }
-            }
-        }
-        throw new RuntimeException();
-    }
+    private SessionFactory sessionFactory;
 
     @Override
-    public Customer saveCustomer(Customer customer) {
-        customer.setId(getNextId());
-        customers.add(customer);
-        return customer;
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
     }
 
-    private Long getNextId() {
-        return Long.valueOf((customers.size() + 1));
-    }
+//    /*Public Methods*/
+//    @Override
+//    public Customer findById(Long id) {
+//        if (customers.size() > 0) {
+//            for (Customer customer : customers) {
+//                if (customer.getId().equals(id)) {
+//                    return customer;
+//                }
+//            }
+//        }
+//        throw new RuntimeException("no user found");
+//    }
+
+//    @Override
+//    public Customer addCustomer(Customer customer) {
+//        customers.add(customer);
+//        return customer;
+//    }
+
+//    private Long getNextId() {
+//        return Long.valueOf((customers.size() + 1));
+//    }
 
 }

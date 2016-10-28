@@ -2,9 +2,9 @@ package repository;
 
 import domain.Customer;
 
-public interface CustomerRepository {
+public interface CustomerRepository extends BaseRepository<Customer> {
 
-    Customer findCustomerById(Long id);
+//    Customer findCustomerById(Long id);
 
-    Customer saveCustomer(Customer customer);
+//    Customer addCustomer(Customer customer);
 }

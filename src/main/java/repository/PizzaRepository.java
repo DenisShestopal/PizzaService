@@ -8,10 +8,10 @@ public interface PizzaRepository {
 
 
    List<Pizza> getPizzas();
-
-   Pizza getPizzaById(Long id);
-
-   Pizza findPizzaById(Long id);
+//
+//   Pizza getPizzaById(Long id);
+//
+//   Pizza findPizzaById(Long id);
 
    Pizza savePizza(Pizza pizza);
 

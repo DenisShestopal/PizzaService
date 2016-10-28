@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Table(name = "pizzas")
 @Component
 @Scope(scopeName = "prototype")
-public class Pizza {
+public class Pizza extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 32, unique = true)
     private String name;
