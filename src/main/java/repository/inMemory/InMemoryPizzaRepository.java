@@ -53,7 +53,7 @@ public class InMemoryPizzaRepository extends InMemoryBaseRepository<Pizza> imple
 
     @Override
     public Pizza savePizza(Pizza pizza) {
-        pizza.setId(Long.valueOf(pizzas.size() + 1));
+//        pizza.setId(Long.valueOf(pizzas.size() + 1));
         pizzas.add(pizza);
         return pizza;
     }

@@ -1,6 +1,7 @@
 package domain;
 
 
+import domain.enums.DiscountState;
 import lombok.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -9,20 +10,35 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "cards")
-@Component
+@Entity
 @Scope(scopeName = "prototype")
 public class Card extends BaseEntity{
 
-    @Column(name = "balance", nullable = false)
-    private double balance;
-    @OneToOne(mappedBy = "card")
-    private Customer customer;
+    private final static int PERCENTAGE_LIMIT = 30;
+    private final static int CARD_PERCENTAGE = 10;
 
-   /* *//*Other methods*//*
+    @Column(name = "balance", nullable = false)
+    private Double balance;
+
+//    @OneToOne(mappedBy = "cards")
+//    private Customer customer;
+
+    @Column(name = "discount")
+    private Integer cardDiscount;
+
+    @Column(name = "status")
+    private DiscountState status;
+
+    public Card() {
+        this.balance = 0.0;
+        this.cardDiscount = CARD_PERCENTAGE;
+        this.status = DiscountState.ACTIVE;
+    }
+
+    /* *//*Other methods*//*
     void increaseCardBalance(double amount) {
         balance += amount;
     }*/

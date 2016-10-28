@@ -9,7 +9,7 @@ import javax.persistence.*;
 public abstract class BaseEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

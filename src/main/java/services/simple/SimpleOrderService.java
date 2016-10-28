@@ -7,6 +7,7 @@ import domain.Pizza;
 import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
 import repository.OrderRepository;
+import repository.PizzaRepository;
 import services.CustomerService;
 import services.OrderService;
 import services.PizzaService;
@@ -23,13 +24,15 @@ public class SimpleOrderService implements OrderService {
     public OrderRepository orderRepository;
     public PizzaService pizzaService;
     public CustomerService customerService;
+    public List<Pizza> pizzas;
+    public PizzaRepository pizzaRepository;
 
-    @Autowired
-    public SimpleOrderService(OrderRepository orderRepository, PizzaService pizzaService, CustomerService customerService) {
-        this.orderRepository = orderRepository;
-        this.pizzaService = pizzaService;
-        this.customerService = customerService;
-    }
+//    @Autowired
+//    public SimpleOrderService(OrderRepository orderRepository, PizzaService pizzaService, CustomerService customerService) {
+//        this.orderRepository = orderRepository;
+//        this.pizzaService = pizzaService;
+//        this.customerService = customerService;
+//    }
 
 //    @Override
 //    public OrderRepository getInMemoryOrderRepository() {
@@ -42,8 +45,10 @@ public class SimpleOrderService implements OrderService {
 //    }
 
     @Override
-    public Order placeNewOrder(Customer customer, Long... pizzasId) throws PizzasOutOfBoundException {
-        return null;
+    public Order placeNewOrder(Customer customer, Map<Pizza, Integer> pizzas) throws PizzasOutOfBoundException {
+        Order order = new Order(customer, pizzas);
+        orderRepository.saveOrder(order);
+        return order;
     }
 
 

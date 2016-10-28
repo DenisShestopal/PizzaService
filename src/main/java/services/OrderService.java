@@ -6,10 +6,12 @@ import domain.Pizza;
 import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
 import repository.OrderRepository;
+
+import java.util.Map;
 //import test1.infrastructure.ApplicationContext;
 
 public interface OrderService {
-    Order placeNewOrder(Customer customer, Long... pizzasId) throws PizzasOutOfBoundException;
+    Order placeNewOrder(Customer customer, Map<Pizza, Integer> pizzas) throws PizzasOutOfBoundException;
 
 //    OrderRepository getInMemoryOrderRepository();
 //

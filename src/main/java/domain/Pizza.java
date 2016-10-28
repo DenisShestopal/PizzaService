@@ -14,9 +14,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Table(name = "pizzas")
-@Component
+@Entity
 @Scope(scopeName = "prototype")
 public class Pizza extends BaseEntity {
 
@@ -30,5 +30,9 @@ public class Pizza extends BaseEntity {
     @Column(name = "type", nullable = false, length = 32)
     private PizzaType pizzaType;
 
-
+    public Pizza(String name, Double price, PizzaType pizzaType) {
+        this.name = name;
+        this.price = price;
+        this.pizzaType = pizzaType;
+    }
 }

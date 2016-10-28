@@ -1,14 +1,19 @@
 package appRunners;
 
 
+import domain.Customer;
 import domain.Order;
+import domain.Pizza;
 import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import services.OrderService;
+import services.simple.SimpleOrderService;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SpringAppRunner {
 
@@ -45,6 +50,27 @@ public class SpringAppRunner {
 //
 //        System.out.println(order1);
 //        System.out.println(order2);
+
+        Customer customer = new Customer();
+        Map<Pizza, Integer> pizzas = new HashMap<>();
+
+        {
+            Pizza pizza1 = new Pizza("Pizza #1", 30.00, PizzaType.MEAT);
+            Pizza pizza2 = new Pizza("Pizza #2", 40.00, PizzaType.SEA);
+            Pizza pizza3 = new Pizza("Pizza #3", 50.00, PizzaType.VEGETARIAN);
+
+            pizzas.put(pizza1, 1);
+            pizzas.put(pizza2, 2);
+            pizzas.put(pizza3, 3);
+        }
+
+
+        SimpleOrderService simpleOrderService = new SimpleOrderService();
+        try {
+            simpleOrderService.placeNewOrder(customer, pizzas);
+        } catch (PizzasOutOfBoundException e) {
+            e.printStackTrace();
+        }
 
         repoContext.close();
         appContext.close();

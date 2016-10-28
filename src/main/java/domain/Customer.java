@@ -8,14 +8,14 @@ import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "customers")
-@Component
+@Entity
 @Scope(scopeName = "prototype")
 public class Customer extends BaseEntity{
 
@@ -23,21 +23,26 @@ public class Customer extends BaseEntity{
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "address")
-    private Address address;
+    private List<Address> addresses;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "card")
-    private Card card;
+    private List<Card> cards;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "owner")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Order> orders;
 
     @Column(name = "status", length = 20, nullable = false)
-    @Enumerated(EnumType.STRING)
     private boolean status;
 
-//    private boolean hasCard() {
+    public Customer() {
+        this.name = "Unknown User";
+        this.status = true;
+        this.addresses = new ArrayList<>();
+        this.cards = new ArrayList<>();
+        this.orders = new ArrayList<>();
+    }
+
+    //    private boolean hasCard() {
 //        return (card != null);
 //    }
 

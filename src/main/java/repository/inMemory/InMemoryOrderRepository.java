@@ -1,5 +1,6 @@
 package repository.inMemory;
 
+import domain.Customer;
 import domain.Order;
 import domain.Pizza;
 import infrastructure.annotations.BenchMark;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -49,7 +51,18 @@ public class InMemoryOrderRepository extends InMemoryBaseRepository implements O
         return order;
     }
 
-//    @Override
+    @Override
+    public Customer addCustomerToOrder(Customer customer) {
+        Session session = getSessionFactory().getCurrentSession();
+        return null;
+    }
+
+    @Override
+    public Map<Pizza, Integer> addPizzasMapToOrder(Map<Pizza, Integer> pizzas) {
+        return null;
+    }
+
+    //    @Override
 //    public Order confirmOrderById(Long id) {
 //        Order order = getOrderById(id);
 //        order.confirm();

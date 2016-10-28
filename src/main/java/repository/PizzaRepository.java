@@ -11,7 +11,7 @@ public interface PizzaRepository {
 //
 //   Pizza getPizzaById(Long id);
 //
-//   Pizza findPizzaById(Long id);
+   Pizza findById(Long id);
 
    Pizza savePizza(Pizza pizza);
 
