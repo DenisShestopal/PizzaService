@@ -17,14 +17,13 @@ import java.util.Map;
 
 public class SpringAppRunner {
 
-    public static void main(String ... args){
+    public static void main(String... args) {
         ConfigurableApplicationContext repoContext = new ClassPathXmlApplicationContext("repoContext.xml");
         System.out.println(Arrays.toString(repoContext.getBeanDefinitionNames()));
         //указываем, на основе какой конфигурации спринга работаем
 
         ConfigurableApplicationContext appContext =
                 new ClassPathXmlApplicationContext(new String[]{"appContext.xml"}, repoContext);
-
 
 
 //        OrderService orderService = (OrderService) appContext.getBean("orderService");
@@ -66,11 +65,8 @@ public class SpringAppRunner {
 
 
         SimpleOrderService simpleOrderService = new SimpleOrderService();
-        try {
-            simpleOrderService.placeNewOrder(customer, pizzas);
-        } catch (PizzasOutOfBoundException e) {
-            e.printStackTrace();
-        }
+        simpleOrderService.placeNewOrder(customer, pizzas);
+
 
         repoContext.close();
         appContext.close();

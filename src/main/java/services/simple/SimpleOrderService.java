@@ -45,7 +45,7 @@ public class SimpleOrderService implements OrderService {
 //    }
 
     @Override
-    public Order placeNewOrder(Customer customer, Map<Pizza, Integer> pizzas) throws PizzasOutOfBoundException {
+    public Order placeNewOrder(Customer customer, Map<Pizza, Integer> pizzas){
         Order order = new Order(customer, pizzas);
         orderRepository.saveOrder(order);
         return order;
