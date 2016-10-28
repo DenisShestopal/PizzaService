@@ -111,9 +111,9 @@ public class InMemoryOrderRepository extends InMemoryBaseRepository implements O
 
         if (doesExistById(order.getId())) {
             session.update(order);
-            return order;
         } else
-            throw new RuntimeException("No such order found");
+            session.persist(order);
+        return order;
     }
 
     public boolean doesExistById(Long id) {

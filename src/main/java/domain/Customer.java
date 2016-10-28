@@ -1,10 +1,7 @@
 package domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
@@ -14,9 +11,10 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "customers")
+@ToString(callSuper = true)
 @Entity
-@Scope(scopeName = "prototype")
+@Table(name = "customers")
+//@Scope(scopeName = "prototype")
 public class Customer extends BaseEntity{
 
     @Column(name = "name", nullable = false, length = 32)
