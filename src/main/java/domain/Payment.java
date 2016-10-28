@@ -1,10 +1,12 @@
 package domain;
 
 import domain.discounts.Discount;
+import domain.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,20 +15,19 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Component
 @Table(name = "payments")
 public class Payment extends BaseEntity{
 
     @Column(name = "initial_price", nullable = false)
     private Double initialPrice;
-    @ManyToOne
-    @JoinColumn(name = "discount_name", nullable = false)
-    private Discount appliedDiscount;
     @Column(name = "discount", nullable = false)
     private Double discount;
     @Column(name = "total_price", nullable = false)
     private Double totalPrice;
     @Column(name = "date_time")
     private LocalDateTime dateTime;
+    @Column(name = "status")
+    private PaymentStatus status;
 
 }

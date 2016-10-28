@@ -12,7 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@Entity
 @Table(name = "cards")
 @Component
 @Scope(scopeName = "prototype")
@@ -23,9 +22,9 @@ public class Card extends BaseEntity{
     @OneToOne(mappedBy = "card")
     private Customer customer;
 
-    /*Other methods*/
+   /* *//*Other methods*//*
     void increaseCardBalance(double amount) {
         balance += amount;
-    }
+    }*/
 
 }

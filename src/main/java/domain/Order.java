@@ -1,44 +1,53 @@
 package domain;
 
-import domain.discounts.Discount;
-import domain.enums.DiscountState;
 import domain.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Component
 @Table(name = "orders")
 public class Order extends BaseEntity{
 
     @ElementCollection
-    @CollectionTable(name = "pizzas_quantities", joinColumns = @JoinColumn(name = "order_id", nullable = false))
+    @LazyCollection(LazyCollectionOption.FALSE)
     @MapKeyJoinColumn(name = "pizza_id")
+    @CollectionTable(name = "pizzas_quantities",
+            joinColumns = @JoinColumn(name = "order_id", nullable = false))
     @Column(name = "quantity", nullable = false)
     private Map<Pizza, Integer> pizzas;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "owner", nullable = false)
     private Customer customer;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 20)
+    @Column(name = "status", nullable = false)
     private OrderStatus status;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id", nullable = false)
     private Payment payment;
+
+    @Column(name="orderDiscount")
+    private Double orderDiscount;
+
+    @Column(name="date")
+    private LocalDateTime dateTime;
+
+
 
 
 //    /*Public Methods*/

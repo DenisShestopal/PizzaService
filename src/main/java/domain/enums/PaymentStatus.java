@@ -2,33 +2,34 @@ package domain.enums;
 
 import java.util.*;
 
-public enum OrderStatus {
-        NEW,
-        IN_PROGRESS,
-        CANCELED,
-    PAYED;
+public enum PaymentStatus {
+
+    NEW,
+    IN_PROGRESS,
+    PAYED,
+    CANCELED;
 
     private enum Transition {
-        FROM_NEW(NEW, IN_PROGRESS, CANCELED, PAYED),
-        FROM_IN_PROGRESS(IN_PROGRESS, CANCELED, PAYED),
-        FROM_CANCELED(CANCELED),
-        FROM_DONE(PAYED);
+        FROM_NEW(NEW, IN_PROGRESS, PAYED, CANCELED),
+        FROM_IN_PROGRESS(IN_PROGRESS, PAYED, CANCELED),
+        FROM_CANCELED(PAYED),
+        FROM_DONE(CANCELED);
 
-        OrderStatus from;
+        PaymentStatus from;
 
-        EnumSet<OrderStatus> toStatuses;
+        EnumSet<PaymentStatus> toStatuses;
 
-        Transition(OrderStatus from, OrderStatus... to) {
+        Transition(PaymentStatus from, PaymentStatus... to) {
             this.from = from;
-            toStatuses = EnumSet.noneOf(OrderStatus.class);
+            toStatuses = EnumSet.noneOf(PaymentStatus.class);
             toStatuses.addAll(Arrays.asList(to));
         }
 
-        static final Map<OrderStatus, Set<OrderStatus>> transitions =
-                new EnumMap<>(OrderStatus.class);
+        static final Map<PaymentStatus, Set<PaymentStatus>> transitions =
+                new EnumMap<>(PaymentStatus.class);
 
         static {
-            for (Transition trans : Transition.values()) {
+            for (PaymentStatus.Transition trans : PaymentStatus.Transition.values()) {
                 transitions.put(trans.from, EnumSet.copyOf(trans.toStatuses));
             }
         }
@@ -36,16 +37,16 @@ public enum OrderStatus {
     }
 
     public boolean canChangeTo(OrderStatus newStatus) {
-        return Transition.transitions.get(this).contains(newStatus);
+        return PaymentStatus.Transition.transitions.get(this).contains(newStatus);
     }
 
     public OrderStatus getNextStatus(OrderStatus status){
         if (status.equals(OrderStatus.NEW))
-                return OrderStatus.IN_PROGRESS;
+            return OrderStatus.IN_PROGRESS;
         if (status.equals(OrderStatus.IN_PROGRESS))
-                return OrderStatus.PAYED;
+            return OrderStatus.PAYED;
         if (status.equals(OrderStatus.PAYED))
-                return OrderStatus.PAYED;
+            return OrderStatus.PAYED;
         else return status;
     }
 

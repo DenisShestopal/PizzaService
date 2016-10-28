@@ -14,7 +14,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "customers")
 @Component
 @Scope(scopeName = "prototype")
@@ -31,10 +30,11 @@ public class Customer extends BaseEntity{
     @JoinColumn(name = "card")
     private Card card;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "owner")
     private List<Order> orders;
 
-    @Column(name="status", nullable = false)
+    @Column(name = "status", length = 20, nullable = false)
+    @Enumerated(EnumType.STRING)
     private boolean status;
 
 //    private boolean hasCard() {

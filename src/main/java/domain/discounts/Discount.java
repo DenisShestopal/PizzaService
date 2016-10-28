@@ -18,9 +18,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "discounts")
 public abstract class Discount extends BaseEntity{
-//    @Id
-//    @Column(name = "name", nullable = false, length = 20)
-//    private String name;
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "state", nullable = false)
     private DiscountState state;

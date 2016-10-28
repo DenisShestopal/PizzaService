@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -23,13 +22,5 @@ public class Address extends BaseEntity{
     private String city;
     @Column(name = "street", length = 32)
     private String street;
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private List<Customer> customers;
 
-    @Override
-    public String toString() {
-        return "\t\tCity: " + city +
-                "\n\t\tStreet: " + street + "\n";
-    }
 }
