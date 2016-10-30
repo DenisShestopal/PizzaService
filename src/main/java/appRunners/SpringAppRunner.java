@@ -27,30 +27,6 @@ public class SpringAppRunner {
                 new ClassPathXmlApplicationContext(new String[]{"appContext.xml"}, repoContext);
 
 
-//        OrderService orderService = (OrderService) appContext.getBean("orderService");
-//
-//        orderService.addPizza("newone", 300.0, PizzaType.MEAT);
-//        orderService.addCustomer("Vasya", "Kyiv", "K18a", true);
-//
-//        Order order1 = null;
-//        try {
-//            order1 = orderService.placeNewOrder(orderService.getCustomerById(1L), 1L, 1L, 1L, 1L, 1L);
-//        } catch (PizzasOutOfBoundException e) {
-//            e.printStackTrace();
-//        }
-////        order1.pay();
-//        Order order2 = null;
-//        try {
-//            order2 = orderService.placeNewOrder(orderService.getCustomerById(1L), 1L, 1L);
-//        } catch (PizzasOutOfBoundException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("TOTAL: " + order1.getTotalPrice());
-//        System.out.println("TOTAL: " + order2.getTotalPrice());
-//
-//        System.out.println(order1);
-//        System.out.println(order2);
-
         Customer customer = new Customer();
         Map<Pizza, Integer> pizzas = new HashMap<>();
 

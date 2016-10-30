@@ -19,11 +19,11 @@ import java.time.LocalDateTime;
 @Table(name = "payments")
 public class Payment extends BaseEntity{
 
-    @Column(name = "initial_price", nullable = false)
+    @Column(name = "initial_price", nullable = true)
     private Double initialPrice;
-    @Column(name = "discount", nullable = false)
+    @Column(name = "discount", nullable = true)
     private Double discount;
-    @Column(name = "total_price", nullable = false)
+    @Column(name = "total_price", nullable = true)
     private Double totalPrice;
     @Column(name = "date_time")
     private LocalDateTime dateTime;

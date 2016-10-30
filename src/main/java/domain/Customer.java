@@ -26,7 +26,7 @@ public class Customer extends BaseEntity{
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Card> cards;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders;
 
     @Column(name = "status", length = 20, nullable = false)

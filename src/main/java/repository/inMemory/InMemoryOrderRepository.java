@@ -43,12 +43,9 @@ public class InMemoryOrderRepository extends InMemoryBaseRepository implements O
         Session session = getSessionFactory().getCurrentSession();
         Order order;
 
-        if (doesExistById(id))
-            order = (Order) session.createQuery("select id from domain.Order o where o.id = :orderId")
+        order = (Order) session.createQuery("select id from domain.Order o where o.id = :orderId")
                     .setParameter("orderId", id)
                     .uniqueResult();
-        else
-            throw new RuntimeException("No such order found");
 
         return order;
     }
@@ -111,7 +108,7 @@ public class InMemoryOrderRepository extends InMemoryBaseRepository implements O
     public Order saveOrder(Order order) {
         Session session = getSessionFactory().getCurrentSession();
 
-        if (doesExistById(order.getId())) {
+        if (!order.isNew()) {
             session.update(order);
         } else
             session.persist(order);
