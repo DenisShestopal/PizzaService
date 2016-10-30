@@ -108,10 +108,10 @@ public class InMemoryOrderRepository extends InMemoryBaseRepository implements O
     public Order saveOrder(Order order) {
         Session session = getSessionFactory().getCurrentSession();
 
-        if (!order.isNew()) {
-            session.update(order);
-        } else
+        if (order.isNew()) {
             session.persist(order);
+        } else
+            session.update(order);
         return order;
     }
 
