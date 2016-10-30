@@ -15,6 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
+          <factory-entry name="hibernate4AnnotatedSessionFactory" value="dataSource" />
           <factory-entry name="jpa" />
           <factory-entry name="noname-repoContext.xml@1803" value="dataSource" />
         </datasource-mapping>

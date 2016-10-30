@@ -20,10 +20,33 @@
     <bean class="infrastructure.annotations.BenchmarkBeanPostProcessor"/>
     <!--<bean class="infrastructure.CustomBeanFactoryPostProcessor"/>-->
 
-    <!--<bean name = "orderService"-->
-    <!--class="services.simple.SimpleOrderService">-->
-    <!--<lookup-method name="createNewOrder" bean="order"/>-->
-    <!--</bean>-->
+    <!-- Hibernate 4 SessionFactory Bean definition -->
+    <bean id="hibernate4AnnotatedSessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>domain.Customer</value>
+                <value>domain.Order</value>
+                <value>domain.Pizza</value>
+                <value>domain.Address</value>
+                <value>domain.Payment</value>
+                <value>domain.Card</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+                </prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <bean name="order" class="domain.Order" scope="prototype">
+    </bean>
 
     <bean name="pizzaService" class="services.simple.SimplePizzaService">
     </bean>
@@ -34,8 +57,18 @@
     <bean name="orderService" class="services.simple.SimpleOrderService">
     </bean>
 
-    <bean name="order" class="domain.Order" scope="prototype">
+    <bean name="orderRepository" class="repository.inMemory.InMemoryOrderRepository">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
+
+    <bean name="pizzaRepository" class="repository.inMemory.InMemoryPizzaRepository">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean name="customerRepository" class="repository.inMemory.InMemoryCustomerRepository">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

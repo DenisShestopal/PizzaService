@@ -4,6 +4,7 @@ import domain.Customer;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 import repository.CustomerRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Repository
+@Transactional
 public class InMemoryCustomerRepository extends InMemoryBaseRepository<Customer> implements CustomerRepository {
 
     private List<Customer> customers = new ArrayList<>();

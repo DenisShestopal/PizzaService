@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 import repository.OrderRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ import java.util.Map;
 @Getter
 @Setter
 @Repository
+@Transactional
 public class InMemoryOrderRepository extends InMemoryBaseRepository implements OrderRepository {
 
     private List<Order> orders = new ArrayList<>();

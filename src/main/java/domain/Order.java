@@ -29,9 +29,9 @@ public class Order extends BaseEntity{
     @Column(name = "quantity", nullable = false)
     private Map<Pizza, Integer> pizzas;
 
-//    @OneToOne
-//    @JoinColumn(name = "owner", nullable = false)
-//    private Customer customer;
+    @OneToOne
+    @JoinColumn(name = "owner", nullable = false)
+    private Customer customer;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -49,7 +49,7 @@ public class Order extends BaseEntity{
 
     public Order(Customer customer, Map<Pizza, Integer> pizzas) {
         this.pizzas = pizzas;
-//        this.customer = customer;
+        this.customer = customer;
         this.dateTime = LocalDateTime.now();
         this.payment = new Payment();
         this.orderDiscount = 0;

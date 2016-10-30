@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 import repository.PizzaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @Repository
+@Transactional
 public class InMemoryPizzaRepository extends InMemoryBaseRepository<Pizza> implements PizzaRepository {
 
     private List<Pizza> pizzas = new ArrayList<>();

@@ -3,10 +3,14 @@ package services.simple;
 import domain.Card;
 import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import repository.CustomerRepository;
 import services.CustomerService;
 
+@Service
 public class SimpleCustomerService implements CustomerService {
+
+    @Autowired(required = true)
     private CustomerRepository customerRepository;
 
     @Autowired

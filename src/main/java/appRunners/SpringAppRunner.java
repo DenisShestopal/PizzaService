@@ -9,6 +9,7 @@ import infrastructure.exceptions.PizzasOutOfBoundException;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import services.OrderService;
+import services.PizzaService;
 import services.simple.SimpleOrderService;
 
 import java.util.Arrays;
@@ -64,7 +65,7 @@ public class SpringAppRunner {
         }
 
 
-        SimpleOrderService simpleOrderService = new SimpleOrderService();
+        SimpleOrderService simpleOrderService = (SimpleOrderService) appContext.getBean("orderService");
         simpleOrderService.placeNewOrder(customer, pizzas);
 
 

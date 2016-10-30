@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SimplePizzaService implements PizzaService {
 
+    @Autowired(required = true)
     private PizzaRepository pizzaRepository;
 
 //    @Autowired

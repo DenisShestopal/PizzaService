@@ -21,10 +21,14 @@ import java.util.Map;
 
 public class SimpleOrderService implements OrderService {
 
+    @Autowired(required = true)
     public OrderRepository orderRepository;
+    @Autowired(required = true)
     public PizzaService pizzaService;
+    @Autowired(required = true)
     public CustomerService customerService;
     public List<Pizza> pizzas;
+    @Autowired(required = true)
     public PizzaRepository pizzaRepository;
 
 //    @Autowired
