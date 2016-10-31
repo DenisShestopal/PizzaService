@@ -6,6 +6,7 @@ import domain.Pizza;
 //import infrastructure.context.ApplicationContext;
 import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
+import repository.CustomerRepository;
 import repository.OrderRepository;
 import repository.PizzaRepository;
 import services.CustomerService;
@@ -30,6 +31,8 @@ public class SimpleOrderService implements OrderService {
     public List<Pizza> pizzas;
     @Autowired(required = true)
     public PizzaRepository pizzaRepository;
+    @Autowired(required = true)
+    public CustomerRepository customerRepository;
 
 //    @Autowired
 //    public SimpleOrderService(OrderRepository orderRepository, PizzaService pizzaService, CustomerService customerService) {
@@ -50,6 +53,7 @@ public class SimpleOrderService implements OrderService {
 
     @Override
     public Order placeNewOrder(Customer customer, Map<Pizza, Integer> pizzas){
+        customerRepository.saveCustomer(customer);
         Order order = new Order(customer, pizzas);
         orderRepository.saveOrder(order);
         return order;
