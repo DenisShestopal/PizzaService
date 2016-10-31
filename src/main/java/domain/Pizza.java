@@ -20,14 +20,14 @@ import javax.persistence.*;
 @Scope(scopeName = "prototype")
 public class Pizza extends BaseEntity {
 
-    @Column(name = "name", nullable = false, length = 32, unique = true)
+    @Column(name = "name", length = 32, unique = true)
     private String name;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price")
     private Double price;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false, length = 32)
+    @Column(name = "type", length = 32)
     private PizzaType pizzaType;
 
     public Pizza(String name, Double price, PizzaType pizzaType) {

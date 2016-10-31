@@ -21,11 +21,11 @@ import java.time.LocalDateTime;
 @Scope(scopeName = "prototype")
 public class Payment extends BaseEntity{
 
-    @Column(name = "initial_price", nullable = true)
+    @Column(name = "initial_price")
     private Double initialPrice;
-    @Column(name = "discount", nullable = true)
+    @Column(name = "discount")
     private Double discount;
-    @Column(name = "total_price", nullable = true)
+    @Column(name = "total_price")
     private Double totalPrice;
     @Column(name = "date_time")
     private LocalDateTime dateTime;

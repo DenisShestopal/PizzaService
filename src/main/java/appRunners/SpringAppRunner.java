@@ -44,6 +44,10 @@ public class SpringAppRunner {
         CustomerService customerService = (CustomerService) appContext.getBean("customerService");
         customerService.add(customer);
 
+        OrderService orderService = (OrderService) appContext.getBean("orderService");
+        Order order = new Order(customer, pizzas);
+        orderService.add(order);
+
 //        OrderService simpleOrderService = (OrderService) appContext.getBean("orderService");
 ////        System.out.println(appContext.getBean("orderService").toString());
 //        try {

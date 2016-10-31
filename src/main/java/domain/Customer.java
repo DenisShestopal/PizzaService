@@ -17,7 +17,7 @@ import java.util.List;
 @Scope(scopeName = "prototype")
 public class Customer extends BaseEntity{
 
-    @Column(name = "name", nullable = false, length = 32)
+    @Column(name = "name", length = 32)
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

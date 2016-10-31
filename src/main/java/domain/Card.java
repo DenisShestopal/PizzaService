@@ -20,7 +20,7 @@ public class Card extends BaseEntity{
     private final static int PERCENTAGE_LIMIT = 30;
     private final static int CARD_PERCENTAGE = 10;
 
-    @Column(name = "balance", nullable = false)
+    @Column(name = "balance")
     private Double balance;
 
 //    @OneToOne(mappedBy = "cards")

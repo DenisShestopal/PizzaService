@@ -27,12 +27,12 @@ public class Order extends BaseEntity{
     @LazyCollection(LazyCollectionOption.FALSE)
     @MapKeyJoinColumn(name = "pizza_id")
     @CollectionTable(name = "pizzas_quantities",
-            joinColumns = @JoinColumn(name = "order_id", nullable = false))
-    @Column(name = "quantity", nullable = false)
+            joinColumns = @JoinColumn(name = "order_id"))
+    @Column(name = "quantity")
     private Map<Pizza, Integer> pizzas;
 
     @OneToOne
-    @JoinColumn(name = "owner", nullable = false)
+    @JoinColumn(name = "owner")
     private Customer customer;
 
     @Enumerated(EnumType.STRING)
@@ -40,7 +40,7 @@ public class Order extends BaseEntity{
     private OrderStatus status;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_id", nullable = false)
+    @JoinColumn(name = "payment_id")
     private Payment payment;
 
     @Column(name="orderDiscount")
