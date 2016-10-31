@@ -10,6 +10,8 @@ import services.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SimplePizzaService extends SimpleBaseService<Pizza> implements PizzaService {
 
@@ -25,6 +27,11 @@ public class SimplePizzaService extends SimpleBaseService<Pizza> implements Pizz
     @Override
     public BaseRepository<Pizza> getRepository() {
         return pizzaRepository;
+    }
+
+    @Override
+    public List<Pizza> getPizzasList() {
+        return pizzaRepository.getPizzas();
     }
 
     //    @Autowired

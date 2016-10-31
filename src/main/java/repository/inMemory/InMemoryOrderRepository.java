@@ -34,7 +34,7 @@ public class InMemoryOrderRepository extends InMemoryBaseRepository<Order> imple
     @Override
     public List<Order> getOrders() {
         Session session = getSessionFactory().getCurrentSession();
-        orders = session.createQuery("from orders").list();
+        orders = session.createQuery("from Order").list();
         return orders;
     }
 

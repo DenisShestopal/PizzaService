@@ -45,8 +45,14 @@
     </bean>
 
 
-    <!--<bean name="order" class="domain.Order" scope="prototype">-->
-    <!--</bean>-->
+    <bean name="Order" class="domain.Order" scope="prototype">
+    </bean>
+
+    <bean name="Pizza" class="domain.Pizza" scope="prototype">
+    </bean>
+
+    <bean name="Customer" class="domain.Customer" scope="prototype">
+    </bean>
 
     <!--Services-->
     <bean name="pizzaService" class="services.simple.SimplePizzaService">

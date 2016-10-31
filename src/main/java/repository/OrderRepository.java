@@ -17,17 +17,4 @@ public interface OrderRepository extends BaseRepository<Order>{
 
     Map<Pizza, Integer> addPizzasMapToOrder(Map<Pizza, Integer> pizzas);
 
-//    Order addPizzaByOrderId(Long orderId, Pizza pizza);
-
-//    Order getOrderById(Long id);
-
-//    Order payOrderById(Long id);
-//
-//    Order cancelOrderById(Long id);
-//
-//    Order confirmOrderById(Long id);
-//
-//    Order removePizzaByOrderId(Long orderId, Pizza pizza);
-//
-//    Integer getOrdersNumber();
 }

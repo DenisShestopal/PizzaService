@@ -26,28 +26,13 @@ public class InMemoryCustomerRepository extends InMemoryBaseRepository<Customer>
         return sessionFactory;
     }
 
-//    /*Public Methods*/
-//    @Override
-//    public Customer findById(Long id) {
-//        if (customers.size() > 0) {
-//            for (Customer customer : customers) {
-//                if (customer.getId().equals(id)) {
-//                    return customer;
-//                }
-//            }
-//        }
-//        throw new RuntimeException("no user found");
-//    }
-
-//    @Override
-//    public Customer addCustomer(Customer customer) {
-//        customers.add(customer);
-//        return customer;
-//    }
-
-//    private Long getNextId() {
-//        return Long.valueOf((customers.size() + 1));
-//    }
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Customer> getCustomersList() {
+        Session session = getSessionFactory().getCurrentSession();
+        customers = session.createQuery("from Customer").list();
+        return customers;
+    }
 
     @Override
     public Customer saveCustomer(Customer customer) {

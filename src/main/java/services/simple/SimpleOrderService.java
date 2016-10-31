@@ -99,8 +99,12 @@ public class SimpleOrderService extends SimpleBaseService<Order> implements Orde
         return order;
     }
 
+    @Override
+    public List<Order> getOrders() {
+        return orderRepository.getOrders();
+    }
 
-//    @Override
+    //    @Override
 //    public Order placeNewOrder(Customer customer, Long... pizzasId) throws PizzasOutOfBoundException {
 //        Map<Pizza, Integer> pizzas = new HashMap<>();
 //

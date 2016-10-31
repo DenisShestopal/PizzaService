@@ -15,6 +15,7 @@ import services.simple.SimpleOrderService;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SpringAppRunner {
@@ -41,12 +42,32 @@ public class SpringAppRunner {
             pizzas.put(pizza3, 3);
         }
 
+        PizzaService pizzaService = (PizzaService) appContext.getBean("pizzaService");
         CustomerService customerService = (CustomerService) appContext.getBean("customerService");
-        customerService.add(customer);
-
         OrderService orderService = (OrderService) appContext.getBean("orderService");
         Order order = new Order(customer, pizzas);
-        orderService.add(order);
+
+
+        pizzaService.add(new Pizza("Pizza #1", 30.00, PizzaType.MEAT));
+        pizzaService.add(new Pizza("Pizza #2", 40.00, PizzaType.SEA));
+        pizzaService.add(new Pizza("Pizza #3", 50.00, PizzaType.VEGETARIAN));
+        customerService.add(customer);
+//        orderService.add(order);
+
+        List<Pizza> pizzasList = pizzaService.getPizzasList();
+        for (Pizza pizza : pizzasList) {
+            System.out.println("pizzas: " + pizza.toString());
+        }
+
+        List<Customer> customers = customerService.getCustomersList();
+        for (Customer customer1 : customers) {
+            System.out.println("Customer: " + customer1.toString());
+        }
+
+        List<Order> orders = orderService.getOrders();
+        for (Order order1 : orders) {
+            System.out.println("1+" + order1.toString());
+        }
 
 //        OrderService simpleOrderService = (OrderService) appContext.getBean("orderService");
 ////        System.out.println(appContext.getBean("orderService").toString());

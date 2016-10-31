@@ -1,16 +1,15 @@
 package domain;
 
 import domain.enums.OrderStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import lombok.*;
+import org.hibernate.annotations.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -18,12 +17,14 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "orders")
 @Scope(scopeName = "prototype")
 public class Order extends BaseEntity{
 
-    @ElementCollection
+    @ElementCollection()
     @LazyCollection(LazyCollectionOption.FALSE)
     @MapKeyJoinColumn(name = "pizza_id")
     @CollectionTable(name = "pizzas_quantities",
@@ -31,7 +32,7 @@ public class Order extends BaseEntity{
     @Column(name = "quantity")
     private Map<Pizza, Integer> pizzas;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "owner")
     private Customer customer;
 

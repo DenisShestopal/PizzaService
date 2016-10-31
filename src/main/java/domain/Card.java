@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString(callSuper = true)
+@ToString
+@EqualsAndHashCode
 @Table(name = "cards")
 @Entity
 @Scope(scopeName = "prototype")

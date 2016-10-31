@@ -9,6 +9,8 @@ import repository.BaseRepository;
 import repository.CustomerRepository;
 import services.CustomerService;
 
+import java.util.List;
+
 @Service
 public class SimpleCustomerService extends SimpleBaseService <Customer> implements CustomerService {
 
@@ -51,5 +53,10 @@ public class SimpleCustomerService extends SimpleBaseService <Customer> implemen
     @Override
     public void addCustomer(String name, String city, String street, boolean hasCard) {
 
+    }
+
+    @Override
+    public List<Customer> getCustomersList() {
+        return customerRepository.getCustomersList();
     }
 }

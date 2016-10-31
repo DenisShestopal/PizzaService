@@ -5,8 +5,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.core.GenericTypeResolver;
+import org.springframework.transaction.annotation.Transactional;
 import repository.BaseRepository;
 
+@Transactional
 public abstract class InMemoryBaseRepository<T extends BaseEntity> implements BaseRepository<T> {
 
     //get type of T by reflection
@@ -19,13 +21,11 @@ public abstract class InMemoryBaseRepository<T extends BaseEntity> implements Ba
 
     @Override
     public T add(T entity) {
-        try {
-            Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().getCurrentSession();
+
+        if (entity.isNew()) {
             session.persist(entity);
-        } catch (HibernateException e) {
-            Session session = getSessionFactory().openSession();
-            session.persist(entity);
-        }
+        } else session.persist(entity);
         return entity;
     }
 

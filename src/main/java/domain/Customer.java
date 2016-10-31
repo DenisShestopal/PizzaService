@@ -11,7 +11,8 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString(callSuper = true)
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "customers")
 @Scope(scopeName = "prototype")
@@ -20,11 +21,11 @@ public class Customer extends BaseEntity{
     @Column(name = "name", length = 32)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Address> addresses;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Card> cards;
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<Address> addresses;
+//
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<Card> cards;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders;
@@ -35,9 +36,9 @@ public class Customer extends BaseEntity{
     public Customer() {
         this.name = "Unknown User";
         this.status = true;
-        this.addresses = new ArrayList<>();
-        this.cards = new ArrayList<>();
-        this.orders = new ArrayList<>();
+//        this.addresses = new ArrayList<>();
+//        this.cards = new ArrayList<>();
+//        this.orders = new ArrayList<>();
     }
 
 }

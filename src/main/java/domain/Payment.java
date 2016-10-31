@@ -2,10 +2,7 @@ package domain;
 
 import domain.discounts.Discount;
 import domain.enums.PaymentStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
+@EqualsAndHashCode
 @Table(name = "payments")
 @Scope(scopeName = "prototype")
 public class Payment extends BaseEntity{

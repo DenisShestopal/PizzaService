@@ -34,7 +34,7 @@ public class InMemoryPizzaRepository extends InMemoryBaseRepository<Pizza> imple
     @Override
     public List<Pizza> getPizzas() {
         Session session = getSessionFactory().getCurrentSession();
-        pizzas = session.createQuery("from pizzas").list();
+        pizzas = session.createQuery("from Pizza").list();
         return pizzas;
     }
 
