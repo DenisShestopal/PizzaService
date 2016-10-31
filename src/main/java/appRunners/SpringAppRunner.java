@@ -8,6 +8,7 @@ import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import services.CustomerService;
 import services.OrderService;
 import services.PizzaService;
 import services.simple.SimpleOrderService;
@@ -40,9 +41,16 @@ public class SpringAppRunner {
             pizzas.put(pizza3, 3);
         }
 
+        CustomerService customerService = (CustomerService) appContext.getBean("customerService");
+        customerService.add(customer);
 
-        SimpleOrderService simpleOrderService = (SimpleOrderService) appContext.getBean("orderService");
-        simpleOrderService.placeNewOrder(customer, pizzas);
+//        OrderService simpleOrderService = (OrderService) appContext.getBean("orderService");
+////        System.out.println(appContext.getBean("orderService").toString());
+//        try {
+//            simpleOrderService.placeNewOrder(customer, pizzas);
+//        } catch (PizzasOutOfBoundException e) {
+//            e.printStackTrace();
+//        }
 
 
         repoContext.close();

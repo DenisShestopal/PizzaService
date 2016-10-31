@@ -1,6 +1,7 @@
 package repository.inMemory;
 
 import domain.BaseEntity;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.core.GenericTypeResolver;
@@ -18,8 +19,13 @@ public abstract class InMemoryBaseRepository<T extends BaseEntity> implements Ba
 
     @Override
     public T add(T entity) {
-        Session session = getSessionFactory().getCurrentSession();
-        session.persist(entity);
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.persist(entity);
+        } catch (HibernateException e) {
+            Session session = getSessionFactory().openSession();
+            session.persist(entity);
+        }
         return entity;
     }
 
@@ -44,7 +50,12 @@ public abstract class InMemoryBaseRepository<T extends BaseEntity> implements Ba
 
     @Override
     public T findById(Long id) {
-        Session session = getSessionFactory().getCurrentSession();
-        return session.load(genericType, id);
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            return (T) session.load(genericType, id);
+        } catch (HibernateException e) {
+            Session session = getSessionFactory().openSession();
+            return (T) session.load(genericType, id);
+        }
     }
 }

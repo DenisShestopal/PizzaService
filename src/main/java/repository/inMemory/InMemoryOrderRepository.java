@@ -20,7 +20,7 @@ import java.util.Map;
 @Setter
 @Repository
 @Transactional
-public class InMemoryOrderRepository extends InMemoryBaseRepository implements OrderRepository {
+public class InMemoryOrderRepository extends InMemoryBaseRepository<Order> implements OrderRepository {
 
     private List<Order> orders = new ArrayList<>();
     private SessionFactory sessionFactory;

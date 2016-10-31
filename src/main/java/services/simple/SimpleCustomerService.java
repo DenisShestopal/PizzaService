@@ -3,19 +3,31 @@ package services.simple;
 import domain.Card;
 import domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import repository.BaseRepository;
 import repository.CustomerRepository;
 import services.CustomerService;
 
 @Service
-public class SimpleCustomerService implements CustomerService {
+public class SimpleCustomerService extends SimpleBaseService <Customer> implements CustomerService {
+
+    private CustomerRepository customerRepository;
 
     @Autowired(required = true)
-    private CustomerRepository customerRepository;
+    @Qualifier(value = "customerRepository")
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Autowired
     public SimpleCustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+    }
+
+    @Override
+    public BaseRepository<Customer> getRepository() {
+        return customerRepository;
     }
 
     @Override

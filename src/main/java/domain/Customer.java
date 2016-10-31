@@ -14,16 +14,16 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "customers")
-//@Scope(scopeName = "prototype")
+@Scope(scopeName = "prototype")
 public class Customer extends BaseEntity{
 
     @Column(name = "name", nullable = false, length = 32)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Address> addresses;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Card> cards;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -39,13 +39,5 @@ public class Customer extends BaseEntity{
         this.cards = new ArrayList<>();
         this.orders = new ArrayList<>();
     }
-
-    //    private boolean hasCard() {
-//        return (card != null);
-//    }
-
-//    private void increaseCardBalance(double amount) {
-//        card.increaseCardBalance(amount);
-//    }
 
 }

@@ -2,7 +2,7 @@ package services;
 
 import domain.Customer;
 
-public interface CustomerService {
+public interface CustomerService extends BaseService<Customer>{
 
     Customer getCustomerById(Long id);
 

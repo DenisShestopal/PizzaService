@@ -4,7 +4,7 @@ import domain.Pizza;
 
 import java.util.List;
 
-public interface PizzaRepository {
+public interface PizzaRepository extends  BaseRepository<Pizza>{
 
 
    List<Pizza> getPizzas();

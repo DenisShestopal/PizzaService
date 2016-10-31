@@ -3,18 +3,31 @@ package services.simple;
 import domain.Pizza;
 import domain.enums.PizzaType;
 import infrastructure.annotations.BenchMark;
+import org.springframework.beans.factory.annotation.Qualifier;
+import repository.BaseRepository;
 import repository.PizzaRepository;
 import services.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SimplePizzaService implements PizzaService {
+public class SimplePizzaService extends SimpleBaseService<Pizza> implements PizzaService {
 
-    @Autowired(required = true)
+
     private PizzaRepository pizzaRepository;
 
-//    @Autowired
+    @Autowired(required = true)
+    @Qualifier(value = "pizzaRepository")
+    public void setPizzaRepository(PizzaRepository pizzaRepository) {
+        this.pizzaRepository = pizzaRepository;
+    }
+
+    @Override
+    public BaseRepository<Pizza> getRepository() {
+        return pizzaRepository;
+    }
+
+    //    @Autowired
 //    public void setPizzaRepository(PizzaRepository pizzaRepository) {
 //        this.pizzaRepository = pizzaRepository;
 //    }

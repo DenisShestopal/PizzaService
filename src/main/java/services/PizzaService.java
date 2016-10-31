@@ -4,7 +4,7 @@ import domain.Pizza;
 import domain.enums.PizzaType;
 import repository.PizzaRepository;
 
-public interface PizzaService {
+public interface PizzaService extends BaseService<Pizza>{
 
 //    PizzaRepository getPizzaRepository();
 //

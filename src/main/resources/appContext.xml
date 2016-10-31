@@ -14,15 +14,15 @@
 
 
     <!-- bean definitions here -->
-    <context:component-scan base-package="services"/>
-    <context:component-scan base-package="domain"/>
+    <context:component-scan base-package="main"/>
+    <!--<context:component-scan base-package="domain"/>-->
 
     <bean class="infrastructure.annotations.BenchmarkBeanPostProcessor"/>
     <!--<bean class="infrastructure.CustomBeanFactoryPostProcessor"/>-->
 
-    <!-- Hibernate 4 SessionFactory Bean definition -->
-    <bean id="hibernate4AnnotatedSessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <!-- Hibernate 5 SessionFactory Bean definition -->
+    <bean id="hibernate5AnnotatedSessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
@@ -45,31 +45,53 @@
     </bean>
 
 
-    <bean name="order" class="domain.Order" scope="prototype">
-    </bean>
+    <!--<bean name="order" class="domain.Order" scope="prototype">-->
+    <!--</bean>-->
 
+    <!--Services-->
     <bean name="pizzaService" class="services.simple.SimplePizzaService">
+        <property name="pizzaRepository" ref="pizzaRepository"/>
     </bean>
 
     <bean name="customerService" class="services.simple.SimpleCustomerService">
+        <property name="customerRepository" ref="customerRepository"/>
     </bean>
 
     <bean name="orderService" class="services.simple.SimpleOrderService">
+        <property name="orderRepository" ref="orderRepository"/>
+        <property name="customerRepository" ref="customerRepository"/>
+        <property name="pizzaRepository" ref="pizzaRepository"/>
     </bean>
 
+    <!--Repositories-->
     <bean name="orderRepository" class="repository.inMemory.InMemoryOrderRepository">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
     <bean name="pizzaRepository" class="repository.inMemory.InMemoryPizzaRepository">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
     <bean name="customerRepository" class="repository.inMemory.InMemoryCustomerRepository">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
+    <!--<bean name="addressRepository" class="repository.inMemory.InMemoryAddressRepository">-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
+
+    <!--<bean name="cardRepository" class="repository.inMemory.InMemoryCardRepository">-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
+
+    <!--<bean name="paymentRepository" class="repository.inMemory.InMemoryPaymentRepository">-->
+        <!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+    <!--</bean>-->
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
 
 </beans>

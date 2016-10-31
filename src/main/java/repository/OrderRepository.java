@@ -7,7 +7,7 @@ import domain.Pizza;
 import java.util.List;
 import java.util.Map;
 
-public interface OrderRepository {
+public interface OrderRepository extends BaseRepository<Order>{
 
     Order saveOrder(Order order);
 

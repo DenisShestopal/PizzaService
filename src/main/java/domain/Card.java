@@ -38,9 +38,4 @@ public class Card extends BaseEntity{
         this.status = DiscountState.ACTIVE;
     }
 
-    /* *//*Other methods*//*
-    void increaseCardBalance(double amount) {
-        balance += amount;
-    }*/
-
 }

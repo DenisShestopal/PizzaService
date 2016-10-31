@@ -10,7 +10,7 @@ import repository.OrderRepository;
 import java.util.Map;
 //import test1.infrastructure.ApplicationContext;
 
-public interface OrderService {
+public interface OrderService extends BaseService<Order>{
     Order placeNewOrder(Customer customer, Map<Pizza, Integer> pizzas) throws PizzasOutOfBoundException;
 
 //    OrderRepository getInMemoryOrderRepository();

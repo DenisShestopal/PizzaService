@@ -1,14 +1,20 @@
 package services.simple;
 
+import domain.BaseEntity;
 import domain.Customer;
 import domain.Order;
 import domain.Pizza;
 //import infrastructure.context.ApplicationContext;
 import domain.enums.PizzaType;
 import infrastructure.exceptions.PizzasOutOfBoundException;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import repository.BaseRepository;
 import repository.CustomerRepository;
 import repository.OrderRepository;
 import repository.PizzaRepository;
+import services.BaseService;
 import services.CustomerService;
 import services.OrderService;
 import services.PizzaService;
@@ -20,21 +26,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SimpleOrderService implements OrderService {
+@Service
+@Transactional
+public class SimpleOrderService extends SimpleBaseService<Order> implements OrderService {
 
-    @Autowired(required = true)
-    public OrderRepository orderRepository;
-    @Autowired(required = true)
-    public PizzaService pizzaService;
-    @Autowired(required = true)
-    public CustomerService customerService;
-    public List<Pizza> pizzas;
-    @Autowired(required = true)
-    public PizzaRepository pizzaRepository;
-    @Autowired(required = true)
-    public CustomerRepository customerRepository;
+    private OrderRepository orderRepository;
+    private PizzaService pizzaService;
+    private CustomerService customerService;
+    private List<Pizza> pizzas;
+    private PizzaRepository pizzaRepository;
+    private CustomerRepository customerRepository;
 
-//    @Autowired
+    @Autowired
+    @Qualifier(value = "orderRepository")
+    public void setOrderRepository(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    @Autowired
+    @Qualifier(value = "pizzaService")
+    public void setPizzaService(PizzaService pizzaService) {
+        this.pizzaService = pizzaService;
+    }
+
+    @Autowired
+    @Qualifier(value = "customerService")
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    @Autowired
+    @Qualifier(value = "pizzaRepository")
+    public void setPizzaRepository(PizzaRepository pizzaRepository) {
+        this.pizzaRepository = pizzaRepository;
+    }
+
+    @Autowired
+    @Qualifier(value = "customerRepository")
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
+    @Override
+    public BaseRepository<Order> getRepository() {
+        return orderRepository;
+    }
+
+    //    @Autowired
 //    public SimpleOrderService(OrderRepository orderRepository, PizzaService pizzaService, CustomerService customerService) {
 //        this.orderRepository = orderRepository;
 //        this.pizzaService = pizzaService;
@@ -53,9 +91,11 @@ public class SimpleOrderService implements OrderService {
 
     @Override
     public Order placeNewOrder(Customer customer, Map<Pizza, Integer> pizzas){
-        customerRepository.saveCustomer(customer);
         Order order = new Order(customer, pizzas);
-        orderRepository.saveOrder(order);
+//        orderRepository.saveOrder(order);
+        customerRepository.saveCustomer(customer);
+
+        orderRepository.add(order);
         return order;
     }
 
