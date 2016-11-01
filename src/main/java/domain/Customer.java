@@ -21,11 +21,11 @@ public class Customer extends BaseEntity{
     @Column(name = "name", length = 32)
     private String name;
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private List<Address> addresses;
-//
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private List<Card> cards;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Address> addresses;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Card> cards;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders;

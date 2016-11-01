@@ -51,7 +51,7 @@ public class SpringAppRunner {
         pizzaService.add(new Pizza("Pizza #1", 30.00, PizzaType.MEAT));
         pizzaService.add(new Pizza("Pizza #2", 40.00, PizzaType.SEA));
         pizzaService.add(new Pizza("Pizza #3", 50.00, PizzaType.VEGETARIAN));
-        customerService.add(customer);
+//        customerService.add(customer);
 //        orderService.add(order);
 
         List<Pizza> pizzasList = pizzaService.getPizzasList();
