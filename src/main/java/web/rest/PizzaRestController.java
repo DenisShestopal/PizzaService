@@ -3,10 +3,7 @@ package web.rest;
 import domain.Pizza;
 import domain.enums.PizzaType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import services.PizzaService;
 
 
@@ -28,6 +25,11 @@ public class PizzaRestController {
         if (pizzaService.getById(pizzaId) == null)
         return new Pizza("pizza", 33.00, PizzaType.MEAT);
         else return pizzaService.getById(pizzaId);
+    }
+
+    @RequestMapping(value = "pizza/add", method=RequestMethod.POST)
+    public void addPizza(@RequestBody Pizza pizza){
+        System.out.println(pizza);
     }
 
 }
