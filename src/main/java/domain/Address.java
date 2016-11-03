@@ -21,4 +21,7 @@ public class Address extends BaseEntity{
     @Column(name = "street", length = 32)
     private String street;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    protected Customer customer;
+
 }

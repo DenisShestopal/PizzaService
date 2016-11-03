@@ -33,14 +33,15 @@ public class Order extends BaseEntity{
     private Map<Pizza, Integer> pizzas;
 
     @ManyToOne
-    @JoinColumn(name = "owner")
+    @JoinColumn(name = "owner", nullable=false)
     private Customer customer;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = true)
     private OrderStatus status;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id")
     private Payment payment;
 
