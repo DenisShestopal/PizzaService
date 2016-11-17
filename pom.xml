@@ -21,11 +21,18 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>${tomcat.version}</version>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
                 <configuration>
-                    <port>8087</port>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/pizza</contextPath>
+                    </webApp>
+                    <!--<port>8087</port>-->
+                    <httpConnector>
+                        <port>8087</port>
+                    </httpConnector>
                 </configuration>
             </plugin>
         </plugins>
@@ -42,6 +49,7 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <com.h2database.version>1.4.191</com.h2database.version>
         <tomcat.version>2.2</tomcat.version>
+        <jetty.version>9.3.14.v20161028</jetty.version>
     </properties>
 
     <dependencies>
